@@ -17,10 +17,10 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/GourangaDasSamrat/Note-Flow-App.git
+git clone https://github.com/GourangaDasSamrat/react-labs
 
 # Navigate to project directory
-cd Note-Flow-App
+cd 01_Note-Taking-App
 ```
 
 ### Install Dependencies
