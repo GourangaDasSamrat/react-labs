@@ -1,6 +1,8 @@
+import { useContext } from "react";
 import "../App.css";
+import { StudentCtx } from "../contexts/StudentContext";
 
-const AllStudentList = (props) => {
+const AllStudentList = () => {
   // props
   const {
     students,
@@ -8,7 +10,7 @@ const AllStudentList = (props) => {
     setEditMode,
     setEditableStudent,
     setStudentName,
-  } = props;
+  } = useContext(StudentCtx);
 
   // handler functions
   const handleEdit = (student) => {

@@ -1,8 +1,10 @@
+import { useContext } from "react";
 import "../App.css";
+import { StudentCtx } from "../contexts/StudentContext";
 
-const PresentsStudentList = (props) => {
+const PresentsStudentList = () => {
   // props
-  const { students, handleAccidentallyAdded  } = props;
+  const { students, handleAccidentallyAdded  } = useContext(StudentCtx);
 
   // derived state
   const presentStudentList = students.filter((item) => item.isPresent === true);

@@ -1,6 +1,8 @@
+import { useContext } from "react";
 import "../App.css";
+import { StudentCtx } from "../contexts/StudentContext";
 
-const StudentAddForm = (props) => {
+const StudentAddForm = () => {
   // props
   const {
     editMode,
@@ -11,7 +13,7 @@ const StudentAddForm = (props) => {
     setEditableStudent,
     studentName,
     setStudentName,
-  } = props;
+  } = useContext(StudentCtx);
 
   // handler functions
   const handleNameChange = (e) => setStudentName(e.target.value);

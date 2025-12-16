@@ -1,8 +1,10 @@
+import { useContext } from "react";
 import "../App.css";
+import { StudentCtx } from "../contexts/StudentContext";
 
-const AbsentStudentList = (props) => {
+const AbsentStudentList = () => {
   // props
-  const { students, handleAccidentallyAdded } = props;
+  const { students, handleAccidentallyAdded } = useContext(StudentCtx);
 
   return (
     <>
