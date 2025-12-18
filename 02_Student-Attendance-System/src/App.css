@@ -293,3 +293,67 @@ ul {
     }
   }
 }
+
+/* Counter component styling */
+.counter-container {
+  background: rgba(255, 255, 255, 0.95); /* card background */
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  padding: 32px 24px;
+  max-width: 400px;
+  margin: 40px auto;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.counter-container h2 {
+  color: #667eea;
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+
+.counter-container p {
+  font-size: 20px;
+  color: #4a5568;
+  margin-bottom: 24px;
+}
+
+.counter-container button {
+  font-size: 16px;
+  padding: 12px 24px;
+  margin: 0 8px;
+  border: none;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.counter-container button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.counter-container button:hover::before {
+  left: 100%;
+}
+
+.counter-container button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(102, 126, 234, 0.4);
+}
+
+.counter-container button:active {
+  transform: translateY(0);
+}
