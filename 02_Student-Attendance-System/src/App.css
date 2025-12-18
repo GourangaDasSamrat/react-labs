@@ -322,6 +322,7 @@ ul {
 .counter-container button {
   font-size: 16px;
   padding: 12px 24px;
+  margin: 6px 12px!important;
   margin: 0 8px;
   border: none;
   border-radius: 16px;
