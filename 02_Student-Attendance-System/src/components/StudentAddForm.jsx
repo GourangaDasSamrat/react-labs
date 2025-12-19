@@ -4,49 +4,8 @@ import { StudentCtx } from "../contexts/StudentContext";
 
 const StudentAddForm = () => {
   // props
-  const {
-    editMode,
-    setEditMode,
-    students,
-    setStudents,
-    editableStudent,
-    setEditableStudent,
-    studentName,
-    setStudentName,
-  } = useContext(StudentCtx);
-
-  // handler functions
-  const handleNameChange = (e) => setStudentName(e.target.value);
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (studentName.trim() === "") {
-      return alert("Please provide a valid name");
-    }
-
-    editMode ? handleUpdate() : handleCreate();
-  };
-  const handleCreate = () => {
-    const newStudent = {
-      id: Date.now() + "",
-      name: studentName,
-      isPresent: undefined,
-    };
-
-    setStudents([...students, newStudent]);
-    setStudentName("");
-  };
-  const handleUpdate = () => {
-    const updatedStudents = students.map((item) => {
-      if (item.id === editableStudent.id) {
-        return { ...item, name: studentName };
-      }
-      return item;
-    });
-    setStudents(updatedStudents);
-    setEditMode(false);
-    setEditableStudent(null);
-    setStudentName("");
-  };
+  const { handleSubmit, handleNameChange, studentStates } =
+    useContext(StudentCtx);
 
   return (
     <>
@@ -54,11 +13,11 @@ const StudentAddForm = () => {
         <input
           type="text"
           placeholder="Enter a student name"
-          value={studentName}
+          value={studentStates.studentName}
           onChange={handleNameChange}
         />
         <button type="submit">
-          {editMode ? "Update name" : "Add student"}
+          {studentStates.editMode ? "Update name" : "Add student"}
         </button>
       </form>
     </>

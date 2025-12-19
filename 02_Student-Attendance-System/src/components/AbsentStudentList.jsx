@@ -4,14 +4,14 @@ import { StudentCtx } from "../contexts/StudentContext";
 
 const AbsentStudentList = () => {
   // props
-  const { students, handleAccidentallyAdded } = useContext(StudentCtx);
+  const { studentStates, handleAccidentallyAdded } = useContext(StudentCtx);
 
   return (
     <>
       <div className="absent-students">
         <h2>Absent Students</h2>
         <ul>
-          {students
+          {studentStates.students
             .filter((item) => item.isPresent === false)
             .map((student) => (
               <li key={student.id}>
