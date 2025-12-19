@@ -51,7 +51,7 @@ const studentReducer = (state, action) => {
     case "remove_student":
       return {
         ...state,
-        student: state.student.filter(
+        students: state.students.filter(
           (student) => student.id !== action.payload
         ),
       };
