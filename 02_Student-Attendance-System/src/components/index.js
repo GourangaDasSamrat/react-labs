@@ -1,16 +1,10 @@
-import AbsentStudentList from "./AbsentStudentList";
-import AllStudentList from "./AllStudentList";
-import Counter from "./Counter";
-import PresentsStudentList from "./PresentsStudentList";
-import StudentAddForm from "./StudentAddForm";
-import StudentSection from "./StudentSection";
-import Navbar from'./Navbar'
-
-export {Navbar,
-  AbsentStudentList,
-  AllStudentList,
-  Counter,
-  PresentsStudentList,
-  StudentAddForm,
-  StudentSection,
-};
+export { default as AbsentStudentList } from "./AbsentStudentList";
+export { default as AllStudentList } from "./AllStudentList";
+export { default as Counter } from "./Counter";
+export { default as Navbar } from "./Navbar";
+export { default as NotFound } from "./NotFound";
+export { default as PresentsStudentList } from "./PresentsStudentList";
+export { default as StudentAddForm } from "./StudentAddForm";
+export { default as StudentSection } from "./StudentSection";
+export { default as UserDetails } from "./UserDetails";
+export { default as Users } from "./Users";

@@ -1,8 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
-import { Counter, StudentAddForm, StudentSection } from "../components";
-import Users from "../components/Users";
-import UserDetails from "../components/UserDetails";
+import {
+  Counter,
+  NotFound,
+  StudentAddForm,
+  StudentSection,
+  UserDetails,
+  Users,
+} from "../components";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +34,10 @@ export const router = createBrowserRouter([
       {
         path: "users/:userId",
         element: <UserDetails />,
+      },
+      {
+        path: "*",
+        element: <NotFound />,
       },
     ],
   },
