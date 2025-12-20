@@ -1,12 +1,12 @@
+import { Outlet } from "react-router-dom";
 import "./App.css";
-import {Counter, StudentAddForm, StudentSection } from "./components";
+import { Navbar } from "./components";
 
 const App = () => {
   return (
     <>
-      <StudentAddForm />
-      <StudentSection />
-      <Counter />
+      <Navbar />
+      <Outlet />
     </>
   );
 };
