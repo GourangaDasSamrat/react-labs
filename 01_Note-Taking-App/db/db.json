@@ -1,1 +1,85 @@
-{}
+{
+  "notes": [
+    {
+      "id": 1,
+      "title": "Albert Einstein"
+    },
+    {
+      "id": 2,
+      "title": "Isaac Newton"
+    },
+    {
+      "id": 3,
+      "title": "Galileo Galilei"
+    },
+    {
+      "id": 4,
+      "title": "Marie Curie"
+    },
+    {
+      "id": 5,
+      "title": "Nikola Tesla"
+    },
+    {
+      "id": 6,
+      "title": "Charles Darwin"
+    },
+    {
+      "id": 7,
+      "title": "Stephen Hawking"
+    },
+    {
+      "id": 8,
+      "title": "Michael Faraday"
+    },
+    {
+      "id": 9,
+      "title": "Louis Pasteur"
+    },
+    {
+      "id": 10,
+      "title": "Niels Bohr"
+    },
+
+    {
+      "id": 11,
+      "title": "Max Planck"
+    },
+    {
+      "id": 12,
+      "title": "James Clerk Maxwell"
+    },
+    {
+      "id": 13,
+      "title": "Alan Turing"
+    },
+    {
+      "id": 14,
+      "title": "Richard Feynman"
+    },
+    {
+      "id": 15,
+      "title": "Johannes Kepler"
+    },
+    {
+      "id": 16,
+      "title": "Gregor Mendel"
+    },
+    {
+      "id": 17,
+      "title": "Alexander Fleming"
+    },
+    {
+      "id": 18,
+      "title": "Dmitri Mendeleev"
+    },
+    {
+      "id": 19,
+      "title": "Carl Linnaeus"
+    },
+    {
+      "id": 20,
+      "title": "Robert Hooke"
+    }
+  ]
+}
