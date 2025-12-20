@@ -1,61 +1,112 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 
 const App = () => {
+  // states
   const [noteTitle, setNoteTitle] = useState("");
   const [notes, setNotes] = useState([]);
   const [editMode, setEditMode] = useState(false);
   const [editableNote, setEditableNote] = useState(null);
 
-  const changeTitle = (e) => setNoteTitle(e.target.value);
-  const addNote = (e) => {
+  // api fetch
+  const getNotes = () => {
+    fetch("http://localhost:4000/notes")
+      .then((res) => res.json())
+      .then((data) => setNotes(data));
+  };
+
+  useEffect(() => {
+    try {
+      getNotes();
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
+
+  // handler functions
+  const handleChangeTitle = (e) => setNoteTitle(e.target.value);
+  const handleAddNote = (e) => {
     e.preventDefault();
     if (noteTitle.trim === "") {
       return alert("Write something on note field");
     }
 
-    editMode ? updateNote() : createNote();
+    editMode ? handleUpdateNote() : handleCreateNote();
   };
-  const createNote = () => {
+  const handleCreateNote = () => {
     const newNote = {
       id: Date.now() + "",
       title: noteTitle,
     };
 
-    setNotes([newNote, ...notes]);
+    try {
+      fetch("http://localhost:4000/notes", {
+        method: "POST",
+        body: JSON.stringify(newNote),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then(() => {
+        getNotes().catch((error) => {
+          console.error(error);
+        });
+      });
+    } catch (error) {
+      console.error(error);
+    }
+
     setNoteTitle("");
   };
-  const deleteNote = (noteId) =>
-    setNotes(notes.filter((item) => item.id !== noteId));
-  const editNote = (note) => {
+  const handleDeleteNote = (noteId) => {
+    try {
+      fetch(`http://localhost:4000/notes/${noteId}`, {
+        method: "DELETE",
+      }).then(() => {
+        getNotes().catch((error) => {
+          console.error(error);
+        });
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const handleEditNote = (note) => {
     setEditMode(true);
     setEditableNote(note);
     setNoteTitle(note.title);
   };
-  const updateNote = () => {
-    const updatedNote = notes.map((item) => {
-      if (item.id === editableNote.id) {
-        return {
-          ...item,
-          title: noteTitle,
-        };
-      }
-      return item;
-    });
+  const handleUpdateNote = () => {
+    const { id, ...rest } = editableNote;
+    const updatedNote = { ...rest, title: noteTitle };
 
-    setNotes(updatedNote);
+    try {
+      fetch(`http://localhost:4000/notes/${id}`, {
+        method: "PUT",
+        body: JSON.stringify(updatedNote),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then(() => {
+        getNotes().catch((error) => {
+          console.error(error);
+        });
+      });
+    } catch (error) {
+      console.error(error);
+    }
+
     setEditMode(false);
     setNoteTitle("");
   };
 
   return (
     <>
-      <form onSubmit={addNote}>
+      <form onSubmit={handleAddNote}>
         <input
           type="text"
           placeholder="Write your notes here"
           value={noteTitle}
-          onChange={changeTitle}
+          onChange={handleChangeTitle}
         />
         <button type="submit" className="add-btn">
           {editMode ? "Update note" : "Add note"}
@@ -71,14 +122,14 @@ const App = () => {
                 <button
                   type="button"
                   className="edit-btn"
-                  onClick={() => editNote(note)}
+                  onClick={() => handleEditNote(note)}
                 >
                   Edit note
                 </button>
                 <button
                   type="button"
                   className="delete-btn"
-                  onClick={() => deleteNote(note.id)}
+                  onClick={() => handleDeleteNote(note.id)}
                 >
                   Delete note
                 </button>
