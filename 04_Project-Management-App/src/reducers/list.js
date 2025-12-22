@@ -41,7 +41,7 @@ export const listReducer = (lists = [], action) => {
         if (item.id === action.payload.id) {
           return {
             ...item,
-            taskId: [...item.tasks, action.payload.taskId],
+            tasks: [...item.tasks, action.payload.taskId],
           };
         }
         return item;
@@ -53,7 +53,7 @@ export const listReducer = (lists = [], action) => {
         if (item.id === action.payload.id) {
           return {
             ...item,
-            taskId: item.tasks.filter(
+            tasks: item.tasks.filter(
               (taskId) => taskId !== action.payload.taskId
             ),
           };

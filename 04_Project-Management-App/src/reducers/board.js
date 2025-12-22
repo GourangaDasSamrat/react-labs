@@ -10,7 +10,7 @@ export const boardReducer = (boards = [], action) => {
       return [...boards, newBoard];
     }
     case "CHANGE_BOARD_NAME": {
-      return boardReducer.map((item) => {
+      return boards.map((item) => {
         if (item.id === action.payload.id) {
           return {
             ...item,

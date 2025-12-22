@@ -1,7 +1,12 @@
+import { BoardCreatingForm, BoardList } from "../components";
+
 const Boards = () => {
   return (
-    <div>Boards</div>
-  )
-}
+    <div>
+      <BoardCreatingForm />
+      <BoardList />
+    </div>
+  );
+};
 
-export default Boards
+export default Boards;
