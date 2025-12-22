@@ -2,13 +2,9 @@ import { useContext, useState } from "react";
 import { BoardContext } from "../contexts";
 
 const BoardCreatingForm = () => {
-  // states
   const [boardTitle, setBoardTitle] = useState("");
+  const { dispatchBoardActions } = useContext(BoardContext);
 
-  // use context
-  const {dispatchBoardActions} = useContext(BoardContext);
-
-  // handler functions
   const handleAddBoard = (e) => {
     e.preventDefault();
     if (boardTitle.trim() === "") {
@@ -22,7 +18,7 @@ const BoardCreatingForm = () => {
   };
 
   return (
-    <div>
+    <div className="board-creating-form">
       <form onSubmit={handleAddBoard}>
         <input
           type="text"

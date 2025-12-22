@@ -2,7 +2,7 @@ import { BoardCreatingForm, BoardList } from "../components";
 
 const Boards = () => {
   return (
-    <div>
+    <div className="boards-container">
       <BoardCreatingForm />
       <BoardList />
     </div>

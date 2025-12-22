@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 
 const NotFound = () => {
   return (
-    <>
-      <h2>You enter a wrong url</h2>
+    <div className="not-found">
+      <h2>You entered a wrong URL</h2>
       <button type="button">
         <Link to="/">Back to home</Link>
       </button>
-    </>
+    </div>
   );
 };
 

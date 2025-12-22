@@ -4,13 +4,12 @@ import { BoardContext } from "../contexts";
 import { BoardItem } from "./";
 
 const BoardList = () => {
-  // use context
-  const {boards} = useContext(BoardContext);
+  const { boards } = useContext(BoardContext);
 
   return (
-    <div>
+    <div className="board-list">
       {boards.map((board) => (
-        <Link key={board.id} to={`boards/${board.id}`}>
+        <Link key={board.id} to={`/boards/${board.id}`}>
           <BoardItem board={board} />
         </Link>
       ))}

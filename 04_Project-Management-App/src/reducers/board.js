@@ -21,7 +21,7 @@ export const boardReducer = (boards = [], action) => {
       });
     }
     case "REMOVE_BOARD": {
-      return boards.filter((item) => item.id !== action.payload.id);
+      return boards.filter((item) => item.id !== action.payload);
     }
     case "ADD_LIST_ID_TO_BOARD": {
       const updatedBoards = boards.map((item) => {
