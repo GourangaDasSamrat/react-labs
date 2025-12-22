@@ -23,7 +23,7 @@ export const boardReducer = (boards = [], action) => {
     case "REMOVE_BOARD": {
       return boards.filter((item) => item.id !== action.payload.id);
     }
-    case "ADD_LIST_ID": {
+    case "ADD_LIST_ID_TO_BOARD": {
       const updatedBoards = boards.map((item) => {
         if (item.id === action.payload.id) {
           return {
@@ -35,7 +35,7 @@ export const boardReducer = (boards = [], action) => {
       });
       return updatedBoards;
     }
-    case "REMOVE_LIST_ID": {
+    case "REMOVE_LIST_ID_TO_BOARD": {
       const updatedBoards = boards.map((item) => {
         if (item.id === action.payload.id) {
           return {
@@ -49,7 +49,7 @@ export const boardReducer = (boards = [], action) => {
       });
       return updatedBoards;
     }
-    case "ADD_TASK_ID": {
+    case "ADD_TASK_ID_TO_BOARD": {
       const updatedBoards = boards.map((item) => {
         if (item.id === action.payload.id) {
           return {
@@ -61,7 +61,7 @@ export const boardReducer = (boards = [], action) => {
       });
       return updatedBoards;
     }
-    case "REMOVE_TASK_ID": {
+    case "REMOVE_TASK_ID_TO_BOARD": {
       const updatedBoards = boards.map((item) => {
         if (item.id === action.payload.id) {
           return {
