@@ -1,7 +1,61 @@
-const BoardsDetails = () => {
-  return (
-    <div>BoardsDetails</div>
-  )
-}
+import { useContext, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { AddItem, AddItemForm } from "../components";
+import { BoardContext, ListContext } from "../contexts";
 
-export default BoardsDetails
+const BoardsDetails = () => {
+  const [editMode, setEditMode] = useState(false);
+  const [listTitle, setListTitle] = useState("");
+  const { dispatchBoardActions } = useContext(BoardContext);
+  const { lists, dispatchListActions } = useContext(ListContext);
+  const { boardId } = useParams();
+
+  const renderedList = lists.filter((item) => item.boardId === boardId);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const id = Date.now() + "";
+
+    dispatchListActions({
+      type: "CREATE_LIST",
+      payload: {
+        id: id,
+        title: listTitle,
+        boardId: boardId,
+      },
+    });
+
+    dispatchBoardActions({
+      type: "ADD_LIST_ID_TO_BOARD",
+      payload: {
+        id: boardId,
+        listId: id,
+      },
+    });
+
+    setEditMode(false);
+    setListTitle("");
+  };
+
+  return (
+    <div className="details">
+      <Link to="/">Back to boards</Link>
+      {renderedList.map((list) => (
+        <li key={list.id}>{list.title}</li>
+      ))}
+      {editMode ? (
+        <AddItemForm
+          listForm={true}
+          title={listTitle}
+          handleSubmit={handleSubmit}
+          handleOnChange={(e) => setListTitle(e.target.value)}
+          setEditMode={setEditMode}
+        />
+      ) : (
+        <AddItem listAddItem={true} setEditMode={setEditMode} />
+      )}
+    </div>
+  );
+};
+
+export default BoardsDetails;
