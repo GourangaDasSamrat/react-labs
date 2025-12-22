@@ -1,6 +1,6 @@
 import { useReducer } from "react";
 import { listReducer } from "../reducers/list";
-import { ListContext } from "./ListsContext";
+import { ListContext } from "./ListContext";
 
 const ListProvider = ({children}) => {
 
