@@ -173,9 +173,6 @@ body {
   opacity: 1;
 }
 
-.board-item-remove:hover {
-  background-color: rgba(0, 0, 0, 0.4);
-}
 /* Board Details Page */
 .details {
   padding: 1.5rem;
@@ -200,17 +197,14 @@ body {
   transition: background-color 0.2s ease;
 }
 
-.details-header a:hover {
-  background: rgba(0, 0, 0, 0.32);
-}
-
 .details-content {
   display: flex;
   gap: 1rem;
   align-items: flex-start;
   overflow-x: auto;
 }
-/* Task List Container */
+
+/* Task List Container - Updated Structure Integration */
 .list-container {
   background: #ebecf0;
   border-radius: 3px;
@@ -220,65 +214,15 @@ body {
   display: flex;
   flex-direction: column;
   box-shadow: 0 1px 0 rgba(9, 30, 66, 0.13);
-}
-
-.list-container > div {
   padding: 0.75rem;
-  display: flex;
-  flex-direction: column;
-  max-height: 100%;
-  overflow-y: auto;
+  animation: slideIn 0.4s ease-out;
 }
 
-.list-container h5 {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #172b4d;
-  padding: 0.5rem 0.5rem 0.5rem 0.75rem;
-  margin-bottom: 0.5rem;
-  position: relative;
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
-.list-container > div > p {
-  position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  width: 32px;
-  height: 32px;
-  border-radius: 3px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: #5e6c84;
-  font-size: 1.5rem;
-  line-height: 1;
-  transition: all 0.2s ease;
-  font-weight: 400;
-}
-
-.list-container > div > p:hover {
-  background: rgba(9, 30, 66, 0.08);
-  color: #172b4d;
-}
-
-.list-container li {
-  list-style: none;
-  background: white;
-  padding: 0.75rem;
-  border-radius: 3px;
-  margin-bottom: 0.5rem;
-  box-shadow: 0 1px 0 rgba(9, 30, 66, 0.13);
-  cursor: pointer;
-  font-size: 0.95rem;
-  color: #172b4d;
-  line-height: 1.4;
-  transition: background-color 0.2s ease;
-}
-
-.list-container li:hover {
-  background: #f4f5f7;
-}
 .list-header {
   position: relative;
   padding: 0.5rem 0.75rem;
@@ -316,6 +260,41 @@ body {
   background: rgba(9, 30, 66, 0.08);
   color: #172b4d;
 }
+
+/* Droppable area - tasks container */
+.list-container > div[data-rbd-droppable-id] {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 10px;
+}
+
+/* Task Cards (DND Compatible) */
+.taskCard {
+  background: white;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  transition: background 0.15s;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: #172b4d;
+  line-height: 1.4;
+}
+
+.taskCard:hover {
+  background: #f4f5f7;
+}
+
+/* While dragging, slightly tilt the card like Trello */
+.taskCard[data-rbd-drag-handle-draggable-id] {
+  transform: rotate(3deg);
+  box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.15);
+}
+
 /* Add Item Styles */
 .add-item {
   background: rgba(255, 255, 255, 0.24);
@@ -344,22 +323,12 @@ body {
   background: transparent;
   color: #5e6c84;
   margin-top: 0.5rem;
+  width: 100%;
 }
 
 .task-add-item:hover {
   background: rgba(9, 30, 66, 0.08);
   color: #172b4d;
-}
-
-.add-item-icon {
-  font-size: 1.5rem;
-  font-weight: 300;
-  line-height: 1;
-}
-
-.add-item-text {
-  font-size: 0.95rem;
-  font-weight: 500;
 }
 
 /* Add Item Form */
@@ -382,10 +351,8 @@ body {
   font-family: inherit;
   font-size: 0.95rem;
   resize: vertical;
-  box-shadow: 0 1px 0 rgba(9, 30, 66, 0.13);
   background: white;
   color: #172b4d;
-  line-height: 1.4;
 }
 
 .item-card textarea:focus {
@@ -406,18 +373,8 @@ body {
   color: white;
   border: none;
   border-radius: 3px;
-  font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.button-container button:hover {
-  background: #61bd4f;
-}
-
-.button-container button:active {
-  background: #519839;
 }
 
 .button-container p {
@@ -429,82 +386,20 @@ body {
   cursor: pointer;
   color: #5e6c84;
   font-size: 1.5rem;
-  line-height: 1;
-  border-radius: 3px;
-  transition: all 0.2s ease;
-}
-
-.button-container p:hover {
-  background: rgba(9, 30, 66, 0.08);
-  color: #172b4d;
-}
-
-/* Not Found Page */
-.not-found {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: calc(100vh - 80px);
-  text-align: center;
-  color: white;
-  padding: 2rem;
-}
-
-.not-found h2 {
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  font-weight: 700;
-}
-
-.not-found button {
-  padding: 0.75rem 2rem;
-  background: white;
-  border: none;
-  border-radius: 3px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.not-found button:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  transform: translateY(-1px);
-}
-
-.not-found button a {
-  color: #0079bf;
-  text-decoration: none;
 }
 
 /* Scrollbar Styles */
-.list-container > div::-webkit-scrollbar {
+.list-container > div[data-rbd-droppable-id]::-webkit-scrollbar {
   width: 8px;
-  height: 8px;
 }
 
-.list-container > div::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.list-container > div::-webkit-scrollbar-thumb {
+.list-container > div[data-rbd-droppable-id]::-webkit-scrollbar-thumb {
   background: rgba(9, 30, 66, 0.13);
   border-radius: 4px;
 }
 
-.list-container > div::-webkit-scrollbar-thumb:hover {
-  background: rgba(9, 30, 66, 0.25);
-}
-
 .details::-webkit-scrollbar {
   height: 12px;
-}
-
-.details::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.1);
 }
 
 .details::-webkit-scrollbar-thumb {
@@ -512,98 +407,18 @@ body {
   border-radius: 6px;
 }
 
-.details::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.32);
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
-  .navbar {
-    padding: 0.75rem 1rem;
-  }
-
-  .boards-container {
-    padding: 1.5rem 1rem;
-  }
-
-  .board-creating-form {
-    padding: 1rem;
-  }
-
   .board-creating-form form {
     flex-direction: column;
   }
-
-  .board-creating-form button {
-    width: 100%;
-  }
-
   .board-list {
     grid-template-columns: 1fr;
   }
-
-  .details {
-    padding: 1rem;
-    flex-direction: column;
-  }
-
-  .details > a {
-    position: static;
-    margin-bottom: 1rem;
-    width: fit-content;
-  }
-
   .list-container,
   .add-item,
   .item-container {
     width: 100%;
     min-width: 100%;
   }
-
-  .not-found h2 {
-    font-size: 1.8rem;
-  }
-}
-
-/* List Container Animation */
-.list-container {
-  background-color: #ebecf0;
-  border-radius: 4px;
-  width: 272px;
-  min-width: 272px;
-  padding: 10px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  animation: slideIn 0.4s ease-out;
-}
-
-@keyframes slideIn {
-  from { opacity: 0; transform: translateX(20px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-
-.taskCard {
-  background: white;
-  padding: 10px;
-  border-radius: 4px;
-  margin-bottom: 8px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-  transition: background 0.15s;
-  display: flex;
-  justify-content: space-between;
-}
-
-.taskCard:hover {
-  background: #f4f5f7;
-}
-.list-container [data-rbd-placeholder-context-id] {
-  background: rgba(0, 0, 0, 0.1) !important;
-  border-radius: 3px;
-  margin-bottom: 8px;
-}
-
-/* While dragging, slightly tilt the card like Trello */
-.taskCard[data-rbd-drag-handle-draggable-id] {
-  transform: rotate(3deg);
-  box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.15);
-  background: var(--surface-white);
 }

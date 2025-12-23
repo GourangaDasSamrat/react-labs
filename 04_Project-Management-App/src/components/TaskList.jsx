@@ -71,42 +71,39 @@ const TaskList = ({ list }) => {
   };
 
   return (
-    <Droppable droppableId={list.id}>
-      {(provided) => (
-        <div
-          className="list-container"
-          ref={provided.innerRef}
-          {...provided.droppableProps}
-        >
-          <div>
-            <div className="list-header">
-              <h5>{list.title}</h5>
-              <p className="list-remove-btn" onClick={handleRemove}>
-                ×
-              </p>
-            </div>
+    <div className="list-container">
+      <div className="list-header">
+        <h5>{list.title}</h5>
+        <p className="list-remove-btn" onClick={handleRemove}>
+          ×
+        </p>
+      </div>
+
+      <Droppable droppableId={list.id}>
+        {(provided) => (
+          <div ref={provided.innerRef} {...provided.droppableProps}>
             {list.tasks
               .map((item) => tasks.find((el) => el.id === item))
+              .filter(Boolean)
               .map((task, index) => (
                 <TaskCard key={task.id} task={task} index={index} />
               ))}
-            {editMode ? (
-              <AddItemForm
-                title={taskTitle}
-                handleOnChange={(e) => {
-                  setTaskTitle(e.target.value);
-                }}
-                setEditMode={setEditMode}
-                handleSubmit={handleSubmit}
-              />
-            ) : (
-              <AddItem listAddItem={false} setEditMode={setEditMode} />
-            )}
+            {provided.placeholder}
           </div>
-          {provided.placeholder}
-        </div>
+        )}
+      </Droppable>
+
+      {editMode ? (
+        <AddItemForm
+          title={taskTitle}
+          handleOnChange={(e) => setTaskTitle(e.target.value)}
+          setEditMode={setEditMode}
+          handleSubmit={handleSubmit}
+        />
+      ) : (
+        <AddItem listAddItem={false} setEditMode={setEditMode} />
       )}
-    </Droppable>
+    </div>
   );
 };
 
