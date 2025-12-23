@@ -564,3 +564,46 @@ body {
     font-size: 1.8rem;
   }
 }
+
+/* List Container Animation */
+.list-container {
+  background-color: #ebecf0;
+  border-radius: 4px;
+  width: 272px;
+  min-width: 272px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  animation: slideIn 0.4s ease-out;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.taskCard {
+  background: white;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  transition: background 0.15s;
+  display: flex;
+  justify-content: space-between;
+}
+
+.taskCard:hover {
+  background: #f4f5f7;
+}
+.list-container [data-rbd-placeholder-context-id] {
+  background: rgba(0, 0, 0, 0.1) !important;
+  border-radius: 3px;
+  margin-bottom: 8px;
+}
+
+/* While dragging, slightly tilt the card like Trello */
+.taskCard[data-rbd-drag-handle-draggable-id] {
+  transform: rotate(3deg);
+  box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.15);
+  background: var(--surface-white);
+}

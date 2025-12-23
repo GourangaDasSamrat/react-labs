@@ -1,8 +1,9 @@
 import { useContext, useState } from "react";
+import { Draggable } from "react-beautiful-dnd";
 import { BoardContext, ListContext, TaskContext } from "../contexts";
 import { AddItemForm } from "./";
 
-const TaskCard = ({ task }) => {
+const TaskCard = ({ task, index }) => {
   const [editMode, setEditMode] = useState(false);
   const [taskTitle, setTaskTitle] = useState(task.title);
   const { dispatchBoardActions } = useContext(BoardContext);
@@ -47,24 +48,32 @@ const TaskCard = ({ task }) => {
   };
 
   return (
-    <>
-      {editMode ? (
-        <AddItemForm
-          title={taskTitle}
-          setEditMode={setEditMode}
-          listForm={false}
-          handleSubmit={handleSubmit}
-          handleOnChange={(e) => {
-            setTaskTitle(e.target.value);
-          }}
-        />
-      ) : (
-        <div className="taskCard" onClick={() => setEditMode(true)}>
-          <p>{task.title}</p>
-          <p onClick={handleRemove}>×</p>
+    <Draggable draggableId={task.id} index={index}>
+      {(provided) => (
+        <div
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+        >
+          {editMode ? (
+            <AddItemForm
+              title={taskTitle}
+              setEditMode={setEditMode}
+              listForm={false}
+              handleSubmit={handleSubmit}
+              handleOnChange={(e) => {
+                setTaskTitle(e.target.value);
+              }}
+            />
+          ) : (
+            <div className="taskCard" onClick={() => setEditMode(true)}>
+              <p>{task.title}</p>
+              <p onClick={handleRemove}>×</p>
+            </div>
+          )}
         </div>
       )}
-    </>
+    </Draggable>
   );
 };
 

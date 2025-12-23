@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { Droppable } from "react-beautiful-dnd";
 import { BoardContext, ListContext, TaskContext } from "../contexts";
 import { AddItem, AddItemForm, TaskCard } from "./";
 
@@ -70,34 +71,42 @@ const TaskList = ({ list }) => {
   };
 
   return (
-    <div className="list-container">
-      <div>
-        <div className="list-header">
-          <h5>{list.title}</h5>
-          <p className="list-remove-btn" onClick={handleRemove}>
-            ×
-          </p>
+    <Droppable droppableId={list.id}>
+      {(provided) => (
+        <div
+          className="list-container"
+          ref={provided.innerRef}
+          {...provided.droppableProps}
+        >
+          <div>
+            <div className="list-header">
+              <h5>{list.title}</h5>
+              <p className="list-remove-btn" onClick={handleRemove}>
+                ×
+              </p>
+            </div>
+            {list.tasks
+              .map((item) => tasks.find((el) => el.id === item))
+              .map((task, index) => (
+                <TaskCard key={task.id} task={task} index={index} />
+              ))}
+            {editMode ? (
+              <AddItemForm
+                title={taskTitle}
+                handleOnChange={(e) => {
+                  setTaskTitle(e.target.value);
+                }}
+                setEditMode={setEditMode}
+                handleSubmit={handleSubmit}
+              />
+            ) : (
+              <AddItem listAddItem={false} setEditMode={setEditMode} />
+            )}
+          </div>
+          {provided.placeholder}
         </div>
-        {list.tasks
-          .map((item) => tasks.find((el) => el.id === item))
-          .filter(Boolean)
-          .map((task) => (
-            <TaskCard key={task.id} task={task} />
-          ))}
-        {editMode ? (
-          <AddItemForm
-            title={taskTitle}
-            handleOnChange={(e) => {
-              setTaskTitle(e.target.value);
-            }}
-            setEditMode={setEditMode}
-            handleSubmit={handleSubmit}
-          />
-        ) : (
-          <AddItem listAddItem={false} setEditMode={setEditMode} />
-        )}
-      </div>
-    </div>
+      )}
+    </Droppable>
   );
 };
 
