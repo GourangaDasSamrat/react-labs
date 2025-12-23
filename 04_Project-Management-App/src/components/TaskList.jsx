@@ -1,57 +1,38 @@
+import { Droppable } from "@hello-pangea/dnd";
 import { useContext, useState } from "react";
-import { Droppable } from "react-beautiful-dnd";
+import { useParams } from "react-router-dom";
 import { BoardContext, ListContext, TaskContext } from "../contexts";
-import { AddItem, AddItemForm, TaskCard } from "./";
+import AddItem from "./AddItem";
+import AddItemForm from "./AddItemForm";
+import TaskCard from "./TaskCard";
 
 const TaskList = ({ list }) => {
-  const [taskTitle, setTaskTitle] = useState("");
   const [editMode, setEditMode] = useState(false);
-  const { tasks, dispatchTaskActions } = useContext(TaskContext);
-  const { dispatchListActions } = useContext(ListContext);
-  const { dispatchBoardActions } = useContext(BoardContext);
+  const [taskTitle, setTaskTitle] = useState("");
+  const { boardId } = useParams();
 
-  const handleRemove = () => {
-    dispatchListActions({
-      type: "REMOVE_LIST",
-      payload: list.id,
-    });
-    list.tasks.forEach((taskId) => {
-      dispatchTaskActions({
-        type: "REMOVE_TASK",
-        payload: taskId,
-      });
-      dispatchBoardActions({
-        type: "REMOVE_TASK_ID_TO_BOARD",
-        payload: {
-          id: list.boardId,
-          taskId: taskId,
-        },
-      });
-    });
-    dispatchBoardActions({
-      type: "REMOVE_LIST_ID_TO_BOARD",
-      payload: {
-        id: list.boardId,
-        listId: list.id,
-      },
-    });
-  };
+  const { dispatchBoardActions } = useContext(BoardContext);
+  const { dispatchListActions } = useContext(ListContext);
+  const { tasks, dispatchTaskActions } = useContext(TaskContext);
+
+  const listTasks = tasks.filter((task) => task.listId === list.id);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (taskTitle.trim() === "") {
-      return;
-    }
+    if (taskTitle.trim() === "") return;
+
     const taskId = Date.now() + "";
+
     dispatchTaskActions({
       type: "CREATE_TASK",
       payload: {
         id: taskId,
         title: taskTitle,
         listId: list.id,
-        boardId: list.boardId,
+        boardId: boardId,
       },
     });
+
     dispatchListActions({
       type: "ADD_TASK_ID_TO_LIST",
       payload: {
@@ -59,35 +40,69 @@ const TaskList = ({ list }) => {
         taskId: taskId,
       },
     });
+
     dispatchBoardActions({
       type: "ADD_TASK_ID_TO_BOARD",
       payload: {
-        id: list.boardId,
+        id: boardId,
         taskId: taskId,
       },
     });
+
     setTaskTitle("");
     setEditMode(false);
   };
 
+  const handleRemoveList = () => {
+    listTasks.forEach((task) => {
+      dispatchTaskActions({
+        type: "REMOVE_TASK",
+        payload: task.id,
+      });
+
+      dispatchBoardActions({
+        type: "REMOVE_TASK_ID_TO_BOARD",
+        payload: {
+          id: boardId,
+          taskId: task.id,
+        },
+      });
+    });
+
+    dispatchListActions({
+      type: "REMOVE_LIST",
+      payload: list.id,
+    });
+
+    dispatchBoardActions({
+      type: "REMOVE_LIST_ID_TO_BOARD",
+      payload: {
+        id: boardId,
+        listId: list.id,
+      },
+    });
+  };
+
   return (
-    <div className="list-container">
+    <div className="list">
       <div className="list-header">
-        <h5>{list.title}</h5>
-        <p className="list-remove-btn" onClick={handleRemove}>
+        <h3 className="list-title">{list.title}</h3>
+        <button className="list-remove-btn" onClick={handleRemoveList}>
           ×
-        </p>
+        </button>
       </div>
 
-      <Droppable droppableId={list.id}>
+      <Droppable droppableId={String(list.id)}>
         {(provided) => (
-          <div ref={provided.innerRef} {...provided.droppableProps}>
-            {list.tasks
-              .map((item) => tasks.find((el) => el.id === item))
-              .filter(Boolean)
-              .map((task, index) => (
-                <TaskCard key={task.id} task={task} index={index} />
-              ))}
+          <div
+            ref={provided.innerRef}
+            {...provided.droppableProps}
+            className="task-list"
+          >
+            {listTasks.map((task, index) => (
+              <TaskCard key={task.id} task={task} index={index} />
+            ))}
+
             {provided.placeholder}
           </div>
         )}
@@ -95,13 +110,14 @@ const TaskList = ({ list }) => {
 
       {editMode ? (
         <AddItemForm
+          listForm={false}
           title={taskTitle}
+          handleSubmit={handleSubmit}
           handleOnChange={(e) => setTaskTitle(e.target.value)}
           setEditMode={setEditMode}
-          handleSubmit={handleSubmit}
         />
       ) : (
-        <AddItem listAddItem={false} setEditMode={setEditMode} />
+        <AddItem taskAddItem={true} setEditMode={setEditMode} />
       )}
     </div>
   );

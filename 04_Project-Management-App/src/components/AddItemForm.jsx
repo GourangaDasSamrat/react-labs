@@ -1,28 +1,24 @@
 const AddItemForm = ({
-  handleSubmit,
-  handleOnChange,
   listForm,
   title,
-  setEditMode,
+  handleSubmit,
+  handleOnChange,
+  setEditMode
 }) => {
   return (
     <div className="item-container">
-      <div className="item-card">
-        <form>
-          <textarea
-            rows="2"
-            cols="20"
-            value={title}
-            onChange={handleOnChange}
-          ></textarea>
-        </form>
+      <form onSubmit={handleSubmit}>
+        <textarea
+          value={title}
+          onChange={handleOnChange}
+          placeholder={listForm ? "Enter list title..." : "Enter task title..."}
+          rows={listForm ? 1 : 2}
+        />
         <div className="button-container">
-          <button type="button" onClick={handleSubmit}>
-            {listForm ? "Add list" : "Add/Update task"}
-          </button>
-          <p onClick={() => setEditMode(false)}>x</p>
+          <button type="submit">{listForm ? "Add List" : "Add Task"}</button>
+          <p onClick={() => setEditMode(false)}>×</p>
         </div>
-      </div>
+      </form>
     </div>
   );
 };

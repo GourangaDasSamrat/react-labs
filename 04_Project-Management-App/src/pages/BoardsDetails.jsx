@@ -1,5 +1,5 @@
+import { DragDropContext } from "@hello-pangea/dnd";
 import { useContext, useState } from "react";
-import { DragDropContext } from "react-beautiful-dnd";
 import { Link, useParams } from "react-router-dom";
 import { AddItem, AddItemForm, TaskList } from "../components";
 import { BoardContext, ListContext, TaskContext } from "../contexts";

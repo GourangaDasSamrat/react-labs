@@ -1,15 +1,10 @@
-const AddItem = ({ listAddItem, setEditMode }) => {
+const AddItem = ({ listAddItem, taskAddItem, setEditMode }) => {
+  const handleClick = () => setEditMode(true);
+
   return (
-    <div
-      className={
-        listAddItem ? "add-item list-add-item" : "add-item task-add-item"
-      }
-      onClick={() => setEditMode(true)}
-    >
-      <p className="add-item-icon">+</p>
-      <p className="add-item-text">
-        {listAddItem ? "Add a list" : "Add a task"}
-      </p>
+    <div className="add-item" onClick={handleClick}>
+      {listAddItem && "+ Add list"}
+      {taskAddItem && "+ Add task"}
     </div>
   );
 };

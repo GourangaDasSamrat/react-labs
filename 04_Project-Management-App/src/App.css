@@ -16,7 +16,7 @@ body {
   color: #172b4d;
 }
 
-/* Navbar Styles */
+/* Navbar */
 .navbar {
   background-color: rgba(0, 0, 0, 0.32);
   backdrop-filter: blur(10px);
@@ -33,25 +33,21 @@ body {
   margin: 0 auto;
 }
 
-.navbar li {
-  display: inline-block;
-}
-
 .navbar a {
-  color: #ffffff;
+  color: white;
   text-decoration: none;
   font-weight: 600;
   font-size: 0.95rem;
   padding: 0.5rem 0.75rem;
   border-radius: 3px;
-  transition: background-color 0.2s ease;
+  transition: background 0.2s;
 }
 
 .navbar a:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Boards Page Container */
+/* Boards Page */
 .boards-container {
   max-width: 1400px;
   margin: 0 auto;
@@ -80,13 +76,6 @@ body {
   border-radius: 3px;
   font-size: 0.95rem;
   background: #ffffff;
-  box-shadow: inset 0 0 0 2px transparent;
-  transition: box-shadow 0.2s ease;
-}
-
-.board-creating-form input:focus {
-  outline: none;
-  box-shadow: inset 0 0 0 2px #0079bf;
 }
 
 .board-creating-form button {
@@ -98,103 +87,88 @@ body {
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s ease;
-  white-space: nowrap;
+  transition: background 0.2s;
 }
 
 .board-creating-form button:hover {
   background: #61bd4f;
 }
 
-.board-creating-form button:active {
-  background: #519839;
-}
-
 /* Board List */
 .board-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1rem;
+}
+
+.board-list a {
+  text-decoration: none;
 }
 
 /* Board Item */
 .board-item {
   background: rgba(255, 255, 255, 0.24);
   backdrop-filter: blur(10px);
-  padding: 1.25rem;
+  padding: 1.5rem;
   border-radius: 3px;
-  transition: background-color 0.2s ease;
   position: relative;
+  transition: background 0.2s;
   cursor: pointer;
-  min-height: 100px;
-  display: flex;
-  align-items: flex-start;
 }
 
 .board-item:hover {
   background: rgba(255, 255, 255, 0.32);
 }
 
-.board-item a {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-  width: 100%;
-}
-
 .board-item h5 {
+  color: white;
   font-size: 1rem;
-  color: #ffffff;
-  font-weight: 700;
-  line-height: 1.4;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  padding-right: 1.5rem;
 }
 
 .board-item-remove {
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
-  width: 32px;
-  height: 32px;
-  border-radius: 3px;
-  background-color: rgba(0, 0, 0, 0.24);
   color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
+  font-size: 1.2rem;
   font-weight: bold;
-  font-size: 1.5rem;
-  line-height: 1;
-  transition: all 0.2s ease;
-  opacity: 0;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 3px;
+  transition: background 0.2s;
 }
 
-.board-item:hover .board-item-remove {
-  opacity: 1;
+.board-item-remove:hover {
+  background: rgba(0, 0, 0, 0.2);
 }
 
-/* Board Details Page */
+/* Board Details Container */
 .details {
   padding: 1.5rem;
-  max-width: 100%;
   overflow-x: auto;
   min-height: calc(100vh - 60px);
 }
 
 .details-header {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .details-header a {
-  display: inline-block;
   color: white;
+  text-decoration: none;
   background: rgba(0, 0, 0, 0.24);
   padding: 0.5rem 1rem;
   border-radius: 3px;
-  text-decoration: none;
   font-weight: 600;
-  font-size: 0.9rem;
-  transition: background-color 0.2s ease;
+  display: inline-block;
+  transition: background 0.2s;
+}
+
+.details-header a:hover {
+  background: rgba(0, 0, 0, 0.32);
 }
 
 .details-content {
@@ -202,223 +176,190 @@ body {
   gap: 1rem;
   align-items: flex-start;
   overflow-x: auto;
+  padding-bottom: 1rem;
 }
 
-/* Task List Container - Updated Structure Integration */
-.list-container {
+/* List */
+.list {
+  width: 280px;
+  min-width: 280px;
   background: #ebecf0;
-  border-radius: 3px;
-  width: 272px;
-  min-width: 272px;
-  max-height: calc(100vh - 180px);
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 1px 0 rgba(9, 30, 66, 0.13);
-  padding: 0.75rem;
-  animation: slideIn 0.4s ease-out;
+  padding: 12px;
+  border-radius: 8px;
 }
 
-@keyframes slideIn {
-  from { opacity: 0; transform: translateX(20px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-
-.list-header {
-  position: relative;
-  padding: 0.5rem 0.75rem;
-  margin-bottom: 0.5rem;
-}
-
-.list-header h5 {
-  font-size: 0.95rem;
+.list-title {
+  color: #172b4d;
+  font-size: 16px;
   font-weight: 600;
-  color: #172b4d;
-  padding-right: 2.5rem;
-  margin: 0;
+  margin-bottom: 6px;
 }
 
-.list-remove-btn {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  width: 32px;
-  height: 32px;
-  border-radius: 3px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: #5e6c84;
-  font-size: 1.5rem;
-  line-height: 1;
-  transition: all 0.2s ease;
-  font-weight: 400;
-  margin: 0;
-}
-
-.list-remove-btn:hover {
-  background: rgba(9, 30, 66, 0.08);
-  color: #172b4d;
-}
-
-/* Droppable area - tasks container */
-.list-container > div[data-rbd-droppable-id] {
-  flex: 1;
+/* Task List */
+.task-list {
+  min-height: 80px;
+  margin-top: 8px;
+  padding: 6px;
+  border-radius: 6px;
+  max-height: 400px;
   overflow-y: auto;
-  overflow-x: hidden;
-  min-height: 10px;
 }
 
-/* Task Cards (DND Compatible) */
-.taskCard {
+/* Task Card */
+.task-card {
   background: white;
   padding: 10px;
   border-radius: 4px;
   margin-bottom: 8px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-  transition: background 0.15s;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
   cursor: pointer;
   font-size: 0.95rem;
   color: #172b4d;
-  line-height: 1.4;
+  transition: background 0.2s;
 }
 
-.taskCard:hover {
+.task-card:hover {
   background: #f4f5f7;
 }
 
-/* While dragging, slightly tilt the card like Trello */
-.taskCard[data-rbd-drag-handle-draggable-id] {
-  transform: rotate(3deg);
-  box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.15);
-}
-
-/* Add Item Styles */
+/* Add Item Button */
 .add-item {
-  background: rgba(255, 255, 255, 0.24);
-  backdrop-filter: blur(10px);
-  border-radius: 3px;
-  padding: 0.75rem;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  min-width: 272px;
-  width: 272px;
-}
-
-.list-add-item {
-  background: rgba(255, 255, 255, 0.24);
-  color: white;
-}
-
-.list-add-item:hover {
-  background: rgba(255, 255, 255, 0.32);
-}
-
-.task-add-item {
-  background: transparent;
-  color: #5e6c84;
-  margin-top: 0.5rem;
-  width: 100%;
-}
-
-.task-add-item:hover {
   background: rgba(9, 30, 66, 0.08);
+  padding: 8px;
+  margin-top: 6px;
+  border-radius: 4px;
+  cursor: pointer;
   color: #172b4d;
+  font-size: 0.95rem;
+  transition: background 0.2s;
+  text-align: center;
+}
+
+.add-item:hover {
+  background: rgba(9, 30, 66, 0.13);
 }
 
 /* Add Item Form */
 .item-container {
-  width: 272px;
-  min-width: 272px;
-}
-
-.item-card {
-  background: #ebecf0;
-  border-radius: 3px;
-  padding: 0.5rem;
-}
-
-.item-card textarea {
   width: 100%;
-  padding: 0.75rem;
-  border: none;
-  border-radius: 3px;
-  font-family: inherit;
-  font-size: 0.95rem;
-  resize: vertical;
-  background: white;
-  color: #172b4d;
+  margin-top: 8px;
+  background: #ebecf0;
+  padding: 8px;
+  border-radius: 4px;
 }
 
-.item-card textarea:focus {
-  outline: none;
-  box-shadow: inset 0 0 0 2px #0079bf;
+.item-container form {
+  width: 100%;
+}
+
+.item-container textarea {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 3px;
+  border: none;
+  font-size: 0.95rem;
+  font-family: inherit;
+  resize: none;
+  box-shadow: 0 1px 0 rgba(9, 30, 66, 0.13);
+}
+
+.item-container textarea:focus {
+  outline: 2px solid #0079bf;
 }
 
 .button-container {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-top: 0.5rem;
+  margin-top: 8px;
 }
 
-.button-container button {
-  padding: 0.5rem 1rem;
+.item-container button {
+  padding: 6px 12px;
   background: #5aac44;
   color: white;
   border: none;
   border-radius: 3px;
   font-weight: 600;
+  font-size: 0.95rem;
   cursor: pointer;
+  transition: background 0.2s;
+}
+
+.item-container button:hover {
+  background: #61bd4f;
 }
 
 .button-container p {
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: #5e6c84;
   font-size: 1.5rem;
+  color: #5e6c84;
+  cursor: pointer;
+  padding: 0 0.5rem;
+  line-height: 1;
+  transition: color 0.2s;
 }
 
-/* Scrollbar Styles */
-.list-container > div[data-rbd-droppable-id]::-webkit-scrollbar {
+.button-container p:hover {
+  color: #172b4d;
+}
+
+/* Scrollbar */
+.task-list::-webkit-scrollbar {
   width: 8px;
 }
 
-.list-container > div[data-rbd-droppable-id]::-webkit-scrollbar-thumb {
-  background: rgba(9, 30, 66, 0.13);
+.task-list::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
   border-radius: 4px;
 }
 
-.details::-webkit-scrollbar {
-  height: 12px;
+.task-list::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-.details::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.24);
-  border-radius: 6px;
-}
-
-/* Responsive Design */
+/* Responsive */
 @media (max-width: 768px) {
-  .board-creating-form form {
+  .details-content {
     flex-direction: column;
   }
-  .board-list {
-    grid-template-columns: 1fr;
-  }
-  .list-container,
-  .add-item,
-  .item-container {
+  
+  .list {
     width: 100%;
     min-width: 100%;
   }
+  
+  .board-list {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}
+/* Add this to your App.css */
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.list-remove-btn {
+  background: transparent;
+  border: none;
+  color: #5e6c84;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  transition: all 0.2s;
+}
+
+.list-remove-btn:hover {
+  background: rgba(9, 30, 66, 0.08);
+  color: #172b4d;
 }
