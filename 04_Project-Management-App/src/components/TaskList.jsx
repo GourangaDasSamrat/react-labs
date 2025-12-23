@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { BoardContext, ListContext, TaskContext } from "../contexts";
-import { AddItem, AddItemForm } from "./";
+import { AddItem, AddItemForm, TaskCard } from "./";
 
 const TaskList = ({ list }) => {
   const [taskTitle, setTaskTitle] = useState("");
@@ -39,7 +39,6 @@ const TaskList = ({ list }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (taskTitle.trim() === "") {
-      // ✅ Added validation
       return;
     }
     const taskId = Date.now() + "";
@@ -70,34 +69,36 @@ const TaskList = ({ list }) => {
     setEditMode(false);
   };
 
-return (
-  <div className="list-container">
-    <div>
-      <div className="list-header">
-        <h5>{list.title}</h5>
-        <p className="list-remove-btn" onClick={handleRemove}>×</p>
+  return (
+    <div className="list-container">
+      <div>
+        <div className="list-header">
+          <h5>{list.title}</h5>
+          <p className="list-remove-btn" onClick={handleRemove}>
+            ×
+          </p>
+        </div>
+        {list.tasks
+          .map((item) => tasks.find((el) => el.id === item))
+          .filter(Boolean)
+          .map((task) => (
+            <TaskCard key={task.id} task={task} />
+          ))}
+        {editMode ? (
+          <AddItemForm
+            title={taskTitle}
+            handleOnChange={(e) => {
+              setTaskTitle(e.target.value);
+            }}
+            setEditMode={setEditMode}
+            handleSubmit={handleSubmit}
+          />
+        ) : (
+          <AddItem listAddItem={false} setEditMode={setEditMode} />
+        )}
       </div>
-      {list.tasks
-        .map((item) => tasks.find((el) => el.id === item))
-        .filter(Boolean)
-        .map((task) => (
-          <li key={task.id}>{task.title}</li>
-        ))}
-      {editMode ? (
-        <AddItemForm
-          title={taskTitle}
-          handleOnChange={(e) => {
-            setTaskTitle(e.target.value);
-          }}
-          setEditMode={setEditMode}
-          handleSubmit={handleSubmit}
-        />
-      ) : (
-        <AddItem listAddItem={false} setEditMode={setEditMode} />
-      )}
     </div>
-  </div>
-);
+  );
 };
 
 export default TaskList;

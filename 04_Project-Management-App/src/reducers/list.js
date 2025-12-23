@@ -48,7 +48,7 @@ export const listReducer = (lists = [], action) => {
       });
       return updatedLists;
     }
-    case "REMOVE_TASK_LIST": {
+    case "REMOVE_TASK_ID_TO_LIST": {
       const updatedLists = lists.map((item) => {
         if (item.id === action.payload.id) {
           return {
