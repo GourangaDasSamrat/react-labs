@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { AddItem, AddItemForm } from "../components";
+import { AddItem, AddItemForm, TaskList } from "../components";
 import { BoardContext, ListContext } from "../contexts";
 
 const BoardsDetails = () => {
@@ -39,21 +39,25 @@ const BoardsDetails = () => {
 
   return (
     <div className="details">
-      <Link to="/">Back to boards</Link>
-      {renderedList.map((list) => (
-        <li key={list.id}>{list.title}</li>
-      ))}
-      {editMode ? (
-        <AddItemForm
-          listForm={true}
-          title={listTitle}
-          handleSubmit={handleSubmit}
-          handleOnChange={(e) => setListTitle(e.target.value)}
-          setEditMode={setEditMode}
-        />
-      ) : (
-        <AddItem listAddItem={true} setEditMode={setEditMode} />
-      )}
+      <div className="details-header">
+        <Link to="/">← Back to boards</Link>
+      </div>
+      <div className="details-content">
+        {renderedList.map((list) => (
+          <TaskList key={list.id} list={list} />
+        ))}
+        {editMode ? (
+          <AddItemForm
+            listForm={true}
+            title={listTitle}
+            handleSubmit={handleSubmit}
+            handleOnChange={(e) => setListTitle(e.target.value)}
+            setEditMode={setEditMode}
+          />
+        ) : (
+          <AddItem listAddItem={true} setEditMode={setEditMode} />
+        )}
+      </div>
     </div>
   );
 };
