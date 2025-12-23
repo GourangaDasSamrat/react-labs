@@ -2,13 +2,14 @@ import { useContext, useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import { Link, useParams } from "react-router-dom";
 import { AddItem, AddItemForm, TaskList } from "../components";
-import { BoardContext, ListContext } from "../contexts";
+import { BoardContext, ListContext, TaskContext } from "../contexts";
 
 const BoardsDetails = () => {
   const [editMode, setEditMode] = useState(false);
   const [listTitle, setListTitle] = useState("");
   const { dispatchBoardActions } = useContext(BoardContext);
   const { lists, dispatchListActions } = useContext(ListContext);
+  const { dispatchTaskActions } = useContext(TaskContext);
   const { boardId } = useParams();
 
   const renderedList = lists.filter((item) => item.boardId === boardId);
@@ -37,7 +38,39 @@ const BoardsDetails = () => {
     setEditMode(false);
     setListTitle("");
   };
-  const handleDragEnd = () => {};
+  const handleDragEnd = (result) => {
+    const { draggableId, destination, source } = result;
+
+    if (!destination) {
+      return;
+    }
+
+    if (
+      source.droppableId === destination.droppableId &&
+      source.index === destination.index
+    ) {
+      return;
+    }
+
+    if (source.droppableId !== destination.droppableId) {
+      dispatchTaskActions({
+        type: "CHANGE_LIST_ID_TO_TASK",
+        payload: {
+          id: draggableId,
+          listId: destination.droppableId,
+        },
+      });
+    }
+
+    dispatchListActions({
+      type: "SORT_TASK_ID_TO_LIST",
+      payload: {
+        draggableId,
+        source,
+        destination,
+      },
+    });
+  };
 
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
