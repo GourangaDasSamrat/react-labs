@@ -57,7 +57,7 @@ const App = () => {
           <button type="button" onClick={() => handleChangeText("purple")}>
             Change text color to purple
           </button>
-          <button type="button" onClick={dispatch({ type: "theme/RESET" })}>
+          <button type="button" onClick={()=>dispatch({ type: "theme/RESET" })}>
             Reset theme
           </button>
         </div>
