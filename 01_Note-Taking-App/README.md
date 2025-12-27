@@ -43,6 +43,13 @@ pnpm install
 npm run dev
 
 # Application will be available at http://localhost:5173
+
+```
+```bash
+# Start development server
+npm run db
+
+# Mock databse will be available at http://localhost:4000
 ```
 
 ### Build for Production
