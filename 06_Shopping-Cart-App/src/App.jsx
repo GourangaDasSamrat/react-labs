@@ -6,7 +6,7 @@ import { Navbar } from "./components";
 
 const App = () => {
   return (
-    <div>
+    <div className='component'>
       <Navbar />
       <Outlet />
     </div>
