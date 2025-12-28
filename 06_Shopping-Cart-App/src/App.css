@@ -6,3 +6,31 @@
   transform: translateY(-5px);
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
 }
+.notfound-404 {
+  letter-spacing: 8px;
+  animation: float404 2.5s ease-in-out infinite,
+    glow404 3s ease-in-out infinite alternate;
+}
+
+@keyframes float404 {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow404 {
+  0% {
+    text-shadow: 0 0 5px rgba(13, 110, 253, 0.3),
+      0 0 10px rgba(13, 110, 253, 0.2);
+  }
+  100% {
+    text-shadow: 0 0 12px rgba(13, 110, 253, 0.6),
+      0 0 24px rgba(13, 110, 253, 0.4);
+  }
+}
