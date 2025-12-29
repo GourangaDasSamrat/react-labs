@@ -1,32 +1,12 @@
-import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { CartItem } from "../components";
 
 const Cart = () => {
-  const [cart, setCart] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
-      .then((response) => response.json())
-      .then((data) => {
-        const newCart = data.map((item) => ({
-          ...item,
-          quantity: 1,
-        }));
-        setCart(newCart);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("API Error:", error);
-        setLoading(false);
-      });
-  }, []);
-
+  const cart = useSelector((storeState) => storeState.cart);
+  const dispatch = useDispatch();
   // Calculate total price
-  const totalPrice = cart.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
+  let totalPrice = 0;
+  cart.forEach((item) => (totalPrice += item.price * item.quantity));
 
   return (
     <div className="container my-5">
@@ -41,13 +21,7 @@ const Cart = () => {
         </span>
       </div>
 
-      {loading ? (
-        <div className="text-center py-5">
-          <div className="spinner-border text-primary" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-        </div>
-      ) : cart.length === 0 ? (
+      {cart.length === 0 ? (
         <div className="text-center py-5">
           <i className="bi bi-cart-x display-1 text-muted"></i>
           <h4 className="mt-3 text-muted">Your cart is empty</h4>
@@ -117,6 +91,9 @@ const Cart = () => {
                   <button
                     type="button"
                     className="btn btn-outline-danger w-100"
+                    onClick={() => {
+                      dispatch({ type: "cart/clearCart" });
+                    }}
                   >
                     <i className="bi bi-trash3 me-2"></i>
                     Clear Cart

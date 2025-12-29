@@ -1,6 +1,9 @@
+import { useDispatch } from "react-redux";
 import { renderStars } from "../utils/starRating.jsx";
 
 const Card = ({ product }) => {
+  const dispatch = useDispatch();
+
   return (
     <div className="card h-100 shadow-sm hover-card">
       <img
@@ -27,7 +30,16 @@ const Card = ({ product }) => {
 
         <div className="mt-auto">
           <p className="h4 text-primary fw-bold mb-3">${product.price}</p>
-          <button type="button" className="btn btn-primary w-100">
+          <button
+            type="button"
+            className="btn btn-primary w-100"
+            onClick={() =>
+              dispatch({
+                type: "cart/addToCart",
+                payload: product,
+              })
+            }
+          >
             <i className="bi bi-cart-plus me-2"></i>
             Add to Cart
           </button>
