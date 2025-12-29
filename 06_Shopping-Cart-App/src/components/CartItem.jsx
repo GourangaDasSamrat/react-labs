@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { modifyQuantity, removeProduct } from "../store/actions/cart";
 
 const CartItem = ({ item }) => {
   const [quantity, setQuantity] = useState(item.quantity);
@@ -8,39 +9,21 @@ const CartItem = ({ item }) => {
   const handleDecrease = () => {
     if (quantity > 1) {
       const newQuantity = quantity - 1;
-      dispatch({
-        type: "cart/modifyQuantity",
-        payload: {
-          id: item.id,
-          quantity: newQuantity,
-        },
-      });
+      dispatch(modifyQuantity({ id: item.id, quantity: newQuantity }));
       setQuantity(newQuantity);
     }
   };
 
   const handleIncrease = () => {
     const newQuantity = quantity + 1;
-    dispatch({
-      type: "cart/modifyQuantity",
-      payload: {
-        id: item.id,
-        quantity: newQuantity,
-      },
-    });
+    dispatch(modifyQuantity({ id: item.id, quantity: newQuantity }));
     setQuantity(newQuantity);
   };
 
   const handleInputChange = (e) => {
     const value = Number(e.target.value);
     if (value >= 1) {
-      dispatch({
-        type: "cart/modifyQuantity",
-        payload: {
-          id: item.id,
-          quantity: value,
-        },
-      });
+      dispatch(modifyQuantity({ id: item.id, quantity: value }));
       setQuantity(value);
     }
   };
@@ -91,10 +74,7 @@ const CartItem = ({ item }) => {
       <td>
         <button
           onClick={() => {
-            dispatch({
-              type: "cart/removeProduct",
-              payload: item.id,
-            });
+            dispatch(removeProduct(item.id));
           }}
           type="button"
           className="btn btn-outline-danger btn-sm"

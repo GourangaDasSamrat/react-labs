@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import { addToCart } from "../store/actions/cart.js";
 import { renderStars } from "../utils/starRating.jsx";
 
 const Card = ({ product }) => {
@@ -33,12 +34,7 @@ const Card = ({ product }) => {
           <button
             type="button"
             className="btn btn-primary w-100"
-            onClick={() =>
-              dispatch({
-                type: "cart/addToCart",
-                payload: product,
-              })
-            }
+            onClick={() => dispatch(addToCart(product))}
           >
             <i className="bi bi-cart-plus me-2"></i>
             Add to Cart
