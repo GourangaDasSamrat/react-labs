@@ -1,8 +1,14 @@
 import { createReducer } from "@reduxjs/toolkit";
+import {
+  addToCart,
+  clearCart,
+  modifyQuantity,
+  removeProduct,
+} from "../actions/cart";
 
 export const cartReducer = createReducer([], (builder) => {
   builder
-    .addCase("cart/addToCart", (state, action) => {
+    .addCase(addToCart, (state, action) => {
       const product = state.find((item) => item.id === action.payload.id);
       product
         ? (product.quantity += 1)
@@ -12,16 +18,16 @@ export const cartReducer = createReducer([], (builder) => {
           });
     })
 
-    .addCase("cart/removeProduct", (state, action) => {
+    .addCase(removeProduct, (state, action) => {
       return state.filter((item) => item.id !== action.payload);
     })
 
-    .addCase("cart/modifyQuantity", (state, action) => {
+    .addCase(modifyQuantity, (state, action) => {
       const productIndex = state.findIndex(
         (item) => item.id === action.payload.id
       );
       state[productIndex].quantity = action.payload.quantity;
     })
 
-    .addCase("cart/clearCart", () => []);
+    .addCase(clearCart, () => []);
 });
