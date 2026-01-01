@@ -1,52 +1,27 @@
-export const cartReducer = (state = [], action) => {
-  switch (action.type) {
-    case "cart/addToCart": {
+import { createReducer } from "@reduxjs/toolkit";
+
+export const cartReducer = createReducer([], (builder) => {
+  builder
+    .addCase("cart/addToCart", (state, action) => {
       const product = state.find((item) => item.id === action.payload.id);
-      return product
-        ? state.map((item) => {
-            if (item.id === product.id) {
-              return {
-                ...item,
-                quantity: item.quantity + 1,
-              };
-            }
-            return item;
-          })
-        : [
-            ...state,
-            {
-              ...action.payload,
-              quantity: 1,
-            },
-          ];
-    }
+      product
+        ? (product.quantity += 1)
+        : state.push({
+            ...action.payload,
+            quantity: 1,
+          });
+    })
 
-    case "cart/removeProduct": {
+    .addCase("cart/removeProduct", (state, action) => {
       return state.filter((item) => item.id !== action.payload);
-    }
+    })
 
-    case "cart/modifyQuantity": {
-      // Filter out items with quantity 0 or less
-      const updatedCart = state
-        .map((item) => {
-          if (item.id === action.payload.id) {
-            return {
-              ...item,
-              quantity: action.payload.quantity,
-            };
-          }
-          return item; // FIX: Changed from 'state' to 'item'
-        })
-        .filter((item) => item.quantity > 0); // Remove items with 0 or negative quantity
+    .addCase("cart/modifyQuantity", (state, action) => {
+      const productIndex = state.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      state[productIndex].quantity = action.payload.quantity;
+    })
 
-      return updatedCart;
-    }
-
-    case "cart/clearCart": {
-      return [];
-    }
-
-    default:
-      return state;
-  }
-};
+    .addCase("cart/clearCart", () => []);
+});
