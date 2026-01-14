@@ -1,0 +1,204 @@
+{
+  "contacts": [
+    {
+      "id": "1",
+      "firstName": "Albert",
+      "lastName": "Einstein",
+      "email": "albert.einstein@relativity.org",
+      "phone": "+1 (555) 100-0001",
+      "company": "Institute for Advanced Study",
+      "notes": "Theory of Relativity discussion",
+      "createdAt": "2024-01-10T09:00:00.000Z"
+    },
+    {
+      "id": "2",
+      "firstName": "Isaac",
+      "lastName": "Newton",
+      "email": "isaac.newton@gravity.uk",
+      "phone": "+1 (555) 100-0002",
+      "company": "Royal Society",
+      "notes": "Classical mechanics and optics",
+      "createdAt": "2024-01-12T10:15:00.000Z"
+    },
+    {
+      "id": "3",
+      "firstName": "Marie",
+      "lastName": "Curie",
+      "email": "marie.curie@radiation.fr",
+      "phone": "+1 (555) 100-0003",
+      "company": "Curie Institute",
+      "notes": "Radioactivity research",
+      "createdAt": "2024-01-15T11:30:00.000Z"
+    },
+    {
+      "id": "4",
+      "firstName": "Nikola",
+      "lastName": "Tesla",
+      "email": "nikola.tesla@acpower.com",
+      "phone": "+1 (555) 100-0004",
+      "company": "Tesla Labs",
+      "notes": "AC current innovations",
+      "createdAt": "2024-01-18T14:45:00.000Z"
+    },
+    {
+      "id": "5",
+      "firstName": "Charles",
+      "lastName": "Darwin",
+      "email": "charles.darwin@evolution.org",
+      "phone": "+1 (555) 100-0005",
+      "company": "Natural History Museum",
+      "notes": "Evolutionary biology",
+      "createdAt": "2024-01-20T08:20:00.000Z"
+    },
+    {
+      "id": "6",
+      "firstName": "Galileo",
+      "lastName": "Galilei",
+      "email": "galileo@astronomy.it",
+      "phone": "+1 (555) 100-0006",
+      "company": "Astronomy Research Center",
+      "notes": "Heliocentric model",
+      "createdAt": "2024-01-22T13:10:00.000Z"
+    },
+    {
+      "id": "7",
+      "firstName": "Stephen",
+      "lastName": "Hawking",
+      "email": "stephen.hawking@cosmos.uk",
+      "phone": "+1 (555) 100-0007",
+      "company": "Cambridge University",
+      "notes": "Black hole theories",
+      "createdAt": "2024-01-25T15:00:00.000Z"
+    },
+    {
+      "id": "8",
+      "firstName": "Alan",
+      "lastName": "Turing",
+      "email": "alan.turing@computing.uk",
+      "phone": "+1 (555) 100-0008",
+      "company": "Bletchley Park",
+      "notes": "Foundations of computer science",
+      "createdAt": "2024-01-27T10:40:00.000Z"
+    },
+    {
+      "id": "9",
+      "firstName": "Niels",
+      "lastName": "Bohr",
+      "email": "niels.bohr@quantum.dk",
+      "phone": "+1 (555) 100-0009",
+      "company": "Copenhagen Institute",
+      "notes": "Quantum mechanics",
+      "createdAt": "2024-02-01T09:50:00.000Z"
+    },
+    {
+      "id": "10",
+      "firstName": "Max",
+      "lastName": "Planck",
+      "email": "max.planck@physics.de",
+      "phone": "+1 (555) 100-0010",
+      "company": "Max Planck Society",
+      "notes": "Quantum theory originator",
+      "createdAt": "2024-02-03T11:00:00.000Z"
+    },
+    {
+      "id": "11",
+      "firstName": "Richard",
+      "lastName": "Feynman",
+      "email": "richard.feynman@caltech.edu",
+      "phone": "+1 (555) 100-0011",
+      "company": "Caltech",
+      "notes": "Quantum electrodynamics",
+      "createdAt": "2024-02-05T14:25:00.000Z"
+    },
+    {
+      "id": "12",
+      "firstName": "Rosalind",
+      "lastName": "Franklin",
+      "email": "rosalind.franklin@dna.org",
+      "phone": "+1 (555) 100-0012",
+      "company": "King's College London",
+      "notes": "DNA structure research",
+      "createdAt": "2024-02-08T16:30:00.000Z"
+    },
+    {
+      "id": "13",
+      "firstName": "Dmitri",
+      "lastName": "Mendeleev",
+      "email": "dmitri@periodictable.ru",
+      "phone": "+1 (555) 100-0013",
+      "company": "Chemical Society",
+      "notes": "Periodic table",
+      "createdAt": "2024-02-10T09:15:00.000Z"
+    },
+    {
+      "id": "14",
+      "firstName": "Louis",
+      "lastName": "Pasteur",
+      "email": "louis.pasteur@microbio.fr",
+      "phone": "+1 (555) 100-0014",
+      "company": "Pasteur Institute",
+      "notes": "Microbiology and vaccines",
+      "createdAt": "2024-02-12T12:00:00.000Z"
+    },
+    {
+      "id": "15",
+      "firstName": "James",
+      "lastName": "Watson",
+      "email": "james.watson@genetics.org",
+      "phone": "+1 (555) 100-0015",
+      "company": "Cold Spring Harbor Lab",
+      "notes": "DNA double helix",
+      "createdAt": "2024-02-15T10:10:00.000Z"
+    },
+    {
+      "id": "16",
+      "firstName": "Francis",
+      "lastName": "Crick",
+      "email": "francis.crick@genome.uk",
+      "phone": "+1 (555) 100-0016",
+      "company": "Medical Research Council",
+      "notes": "Genetic code research",
+      "createdAt": "2024-02-18T11:45:00.000Z"
+    },
+    {
+      "id": "17",
+      "firstName": "Ada",
+      "lastName": "Lovelace",
+      "email": "ada.lovelace@algorithms.org",
+      "phone": "+1 (555) 100-0017",
+      "company": "Analytical Engine Project",
+      "notes": "First computer programmer",
+      "createdAt": "2024-02-20T13:30:00.000Z"
+    },
+    {
+      "id": "18",
+      "firstName": "Carl",
+      "lastName": "Sagan",
+      "email": "carl.sagan@cosmos.org",
+      "phone": "+1 (555) 100-0018",
+      "company": "NASA",
+      "notes": "Astrophysics and science communication",
+      "createdAt": "2024-02-22T15:20:00.000Z"
+    },
+    {
+      "id": "19",
+      "firstName": "Enrico",
+      "lastName": "Fermi",
+      "email": "enrico.fermi@nuclear.it",
+      "phone": "+1 (555) 100-0019",
+      "company": "Nuclear Research Lab",
+      "notes": "Nuclear physics",
+      "createdAt": "2024-02-25T09:40:00.000Z"
+    },
+    {
+      "id": "20",
+      "firstName": "Johannes",
+      "lastName": "Kepler",
+      "email": "johannes.kepler@astronomy.de",
+      "phone": "+1 (555) 100-0020",
+      "company": "Planetary Motion Institute",
+      "notes": "Laws of planetary motion",
+      "createdAt": "2024-02-28T17:00:00.000Z"
+    }
+  ]
+}
