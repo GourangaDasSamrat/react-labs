@@ -1,11 +1,5 @@
 # Contact Management App
 
-# Assignment : 5
-
-### Name : Gouranga Das Samrat
-
-### Email: gouranga.das.khulna@gmail.com
-
 ## Tech Stack
 
 - **Frontend Framework**: React 18 with TypeScript
