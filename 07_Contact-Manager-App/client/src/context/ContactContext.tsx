@@ -33,7 +33,7 @@ interface ContactContextType {
 
 const ContactContext = createContext<ContactContextType | undefined>(undefined);
 
-const API_URL = 'http://localhost:5000/contacts';
+const API_URL = `${import.meta.env.VITE_API_URL}/contacts`;
 
 export const ContactProvider: React.FC<{ children: ReactNode }> = ({
   children,

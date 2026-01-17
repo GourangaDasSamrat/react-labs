@@ -1,74 +1,138 @@
-# Contact Management App
+## 🛠 Tech Stack
 
-## Tech Stack
+### Frontend (Client)
 
-- **Frontend Framework**: React 18 with TypeScript
-- **Build Tool**: Vite
-- **Routing**: React Router DOM
-- **UI Components**: shadcn/ui (Radix UI primitives)
-- **Styling**: Tailwind CSS
-- **Form Handling**: React Hook Form + Zod
-- **State Management**: React Context API + TanStack Query
-- **Backend**: JSON Server (mock REST API)
-- **Icons**: Lucide React
+* React 18 + TypeScript
+* Vite
+* React Router DOM
+* Tailwind CSS
+* shadcn/ui (Radix UI)
+* React Hook Form + Zod
+* TanStack Query
+* Lucide React
+* Hosted on Vercel
 
-## Getting Started
+### Backend (Server)
+
+* JSON Server (Mock REST API)
+* Node.js
+* Hosted on Render
+
+---
+
+## 🚀 Getting Started (Local Development)
 
 ### Prerequisites
 
-- **Bun** (recommended) OR
-- **Node.js** (v16 or higher) with npm/pnpm/yarn
+* **Node.js v18+**
+* **Bun (optional, recommended for frontend)**
 
-### Installation & Setup
+---
 
-1. **Install dependencies:**
+## 📦 Installation (IMPORTANT)
+
+⚠️ **Client and Server dependencies must be installed separately**
+
+---
+
+###  Install Client Dependencies
 
 ```bash
+cd client
 bun install
-# npm install
-# pnpm install
-# yarn install
+# or
+npm install
 ```
 
-2. **Start development server:**
+---
+
+###  Install Server Dependencies
 
 ```bash
+cd server
+npm install
+```
+
+> ⚠️ Backend uses **Node.js (npm)** for better compatibility with Render.
+
+---
+
+## ▶ Running the Project Locally
+
+### Start Backend (JSON Server)
+
+```bash
+cd server
+npm start
+```
+
+Backend will run at:
+
+```
+http://localhost:3000
+```
+
+---
+
+### Start Frontend (Vite)
+
+Open a new terminal:
+
+```bash
+cd client
 bun dev
-# npm run dev
-# pnpm run dev
-# yarn dev
+# or
+npm run dev
 ```
 
-This will start two servers concurrently:
+Frontend will run at:
 
-- **Vite Dev Server**: `http://localhost:8080` (Frontend)
-- **JSON Server**: `http://localhost:5000` (Mock API)
+```
+http://localhost:8080
+```
 
-3. **Build for production:**
+---
+
+##  API Endpoints
+
+```http
+GET     /contacts
+GET     /contacts/:id
+POST    /contacts
+PUT     /contacts/:id
+PATCH   /contacts/:id
+DELETE  /contacts/:id
+```
+
+---
+
+## 🗄 Database
+
+Contact data is stored in:
+
+```
+server/db/db.json
+```
+
+> ⚠️ Note:
+> On Render (free plan), the database is **not persistent**.
+> Data may reset on redeploy or service restart.
+
+---
+
+##  Build for Production (Frontend)
 
 ```bash
+cd client
 bun build
-# npm run build
-# pnpm run build
-# yarn build
+# or
+npm run build
 ```
 
-4. **Preview production build:**
+---
 
-```bash
-bun preview
-# npm run preview
-# pnpm run preview
-# yarn preview
-```
+##  Notes & Limitations
 
-### Additional Commands
-
-- **Run only Vite server**: `bun dev:vite` (or npm/pnpm/yarn)
-- **Run only JSON server**: `bun dev:db` (or npm/pnpm/yarn)
-- **Run linting**: `bun lint` (or npm/pnpm/yarn)
-- **Run formatting**: `bun format` (or npm/pnpm/yarn)
-
-### Database
-
-Contact data is stored in `data/db.json` file.
+* JSON Server is used for **mock / demo / assignment purposes**
+* Not intended for production-grade backend
+* Render free tier may have **cold start delay (15–30 seconds)**
