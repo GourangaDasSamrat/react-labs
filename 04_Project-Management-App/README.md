@@ -1,5 +1,8 @@
 # Project Management App
 
+## Live preview
+Click [here](https://react-labs-one.vercel.app) to see hosted version of this lab.
+
 ## Tech Used
 
 - React 19

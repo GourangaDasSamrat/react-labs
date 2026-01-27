@@ -1,5 +1,8 @@
 # E-commerce App
 
+## Live preview
+Click [here](https://ecommerce-app-six-tau.vercel.app/) to see hosted version of this lab.
+
 ## Tech Used
 - Vite
 - React 19

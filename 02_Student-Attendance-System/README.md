@@ -1,5 +1,8 @@
 # Student Attendance System
 
+## Live preview
+Click [here](https://student-attendance-system-green.vercel.app/) to see hosted version of this lab.
+
 ## Tech Used
 
 - React 19
