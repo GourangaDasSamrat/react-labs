@@ -1,7 +1,7 @@
 # Student Attendance System
 
 ## Live preview
-Click [here](https://student-attendance-system-green.vercel.app/) to see hosted version of this lab.
+Click [here](https://rlab-2.gdsamrat.qzz.io/) to see hosted version of this lab.
 
 ## Tech Used
 

@@ -1,7 +1,7 @@
 # Project Management App
 
 ## Live preview
-Click [here](https://react-labs-one.vercel.app) to see hosted version of this lab.
+Click [here](https://rlab-4.gdsamrat.qzz.io/) to see hosted version of this lab.
 
 ## Tech Used
 

@@ -1,7 +1,7 @@
 ## 🛠 Tech Stack
 
 ## Live preview
-Click [here](https://contact-manager-pi-five.vercel.app) to see hosted version of this lab.
+Click [here](https://rlab-7.gdsamrat.qzz.io/) to see hosted version of this lab.
 
 ### Frontend (Client)
 
