@@ -1,8 +1,12 @@
+import { Outlet } from "react-router-dom";
+import { Navbar } from "./components";
+
 const App = () => {
   return (
-    <div>
-      <h2 className="bg-red-600">Hello from react app</h2>
-    </div>
+    <>
+      <Navbar />
+      <Outlet />
+    </>
   );
 };
 

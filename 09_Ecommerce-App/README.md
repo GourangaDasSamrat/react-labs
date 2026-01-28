@@ -9,6 +9,7 @@ Click [here](https://rlab-9.gdsamrat.qzz.io/) to see hosted version of this lab.
 - Redux
 - Redux Toolkit
 - Tailwind CSS
+- Bootstrap Icons
 - Firebase
 - React Router Dom
 - Vercel (for hosting)
