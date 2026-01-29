@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
-import { Shop, NotFound } from "../pages";
+import { AddProducts, NotFound, Shop } from "../pages";
 
 export const rootRouter = createBrowserRouter([
   {
@@ -11,6 +11,10 @@ export const rootRouter = createBrowserRouter([
       {
         index: true,
         element: <Shop />,
+      },
+      {
+        path: "add-product",
+        element: <AddProducts />,
       },
     ],
   },
