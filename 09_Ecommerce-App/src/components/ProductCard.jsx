@@ -1,4 +1,9 @@
+import { useDispatch } from "react-redux";
+import { addTodoCart } from '../features/cart';
+
 function ProductCard({ product }) {
+  const dispatch=useDispatch()
+
   return (
     <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-blue-100">
       {/* Image */}
@@ -20,7 +25,7 @@ function ProductCard({ product }) {
 
         {/* Button */}
         <button
-          onClick={() => {}}
+          onClick={() => dispatch(addTodoCart(product))}
           className="w-full flex items-center justify-center gap-2 bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 active:scale-95 transition-all duration-200"
         >
           <i className="bi bi-cart-plus text-lg"></i>

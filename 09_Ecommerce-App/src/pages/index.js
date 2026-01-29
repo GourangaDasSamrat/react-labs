@@ -1,3 +1,4 @@
 export { default as AddProduct } from "./AddProduct";
+export { default as Cart } from "./Cart";
 export { default as NotFound } from "./NotFound";
 export { default as Shop } from "./Shop";
