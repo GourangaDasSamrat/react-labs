@@ -1,4 +1,26 @@
-const Shop = ({ products }) => {
+import { collection, getDocs } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { ProductCard } from "../components";
+import { db } from "../firebase";
+
+const Shop = () => {
+  const [products, setProducts] = useState([]);
+  const refProductCollection = collection(db, "products");
+
+  useEffect(() => {
+    const getAllProducts = async () => {
+      const data = await getDocs(refProductCollection);
+      const filteredData = data.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+
+      setProducts(filteredData);
+    };
+
+    getAllProducts();
+  }, [refProductCollection]);
+
   return (
     <>
       {/* Banner */}
