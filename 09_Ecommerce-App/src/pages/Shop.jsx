@@ -6,9 +6,7 @@ const Shop = ({ products }) => {
         <div className="max-w-7xl mx-auto px-4 text-center">
           <div className="flex items-center justify-center gap-3 mb-4">
             <i className="bi bi-bag-check-fill text-4xl"></i>
-            <h1 className="text-4xl font-bold tracking-wide">
-              Our FStore
-            </h1>
+            <h1 className="text-4xl font-bold tracking-wide">Our ShopEase</h1>
           </div>
           <p className="text-blue-100">
             Shop smarter with quality products you’ll love

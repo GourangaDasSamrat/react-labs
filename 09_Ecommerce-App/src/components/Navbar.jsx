@@ -15,7 +15,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <img src={logo} alt="Logo" className="h-8 w-8" />
-            <span className="text-xl font-semibold">Fstore</span>
+            <span className="text-xl font-semibold">ShopEase</span>
           </Link>
 
           {/* Desktop Navigation */}
