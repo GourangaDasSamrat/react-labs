@@ -31,6 +31,18 @@ const Navbar = () => {
             </Link>
 
             <Link
+              to="/cart"
+              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                isActive("/cart")
+                  ? "bg-blue-600 text-white"
+                  : "hover:bg-gray-100"
+              }`}
+            >
+              <i className="bi bi-cart mr-2"></i>
+              Cart
+            </Link>
+
+            <Link
               to="/add-product"
               className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                 isActive("/add-product")
@@ -92,6 +104,19 @@ const Navbar = () => {
             >
               <i className="bi bi-house-door mr-2"></i>
               Home
+            </Link>
+
+            <Link
+              to="/cart"
+              onClick={() => setIsMenuOpen(false)}
+              className={`block px-4 py-2 rounded-md text-base font-medium ${
+                isActive("/cart")
+                  ? "bg-blue-600 text-white"
+                  : "hover:bg-gray-100"
+              }`}
+            >
+              <i className="bi bi-cart mr-2"></i>
+              Cart
             </Link>
 
             <Link
