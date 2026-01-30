@@ -28,7 +28,7 @@ function ProductCard({ product }) {
           onClick={() => dispatch(addTodoCart(product))}
           className="w-full flex items-center justify-center gap-2 bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 active:scale-95 transition-all duration-200"
         >
-          <i className="bi bi-cart-plus text-lg"></i>
+          <i className="bi bi-cart-plus text-lg cursor-pointer"></i>
           Add to Cart
         </button>
       </div>
