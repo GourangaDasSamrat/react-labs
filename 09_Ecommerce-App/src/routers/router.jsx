@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
+import { PrivateAdminRoute } from '../components';
 import { AddProduct, Cart, NotFound, Shop, SignIn, SignUp } from "../pages";
 
 export const rootRouter = createBrowserRouter([
@@ -13,10 +14,6 @@ export const rootRouter = createBrowserRouter([
         element: <Shop />,
       },
       {
-        path: "add-product",
-        element: <AddProduct />,
-      },
-      {
         path: "cart",
         element: <Cart />,
       },
@@ -27,6 +24,14 @@ export const rootRouter = createBrowserRouter([
       {
         path: "sign-up",
         element: <SignUp />,
+      },
+      {
+        path: "add-product",
+        element: (
+          <PrivateAdminRoute>
+            <AddProduct />
+          </PrivateAdminRoute>
+        ),
       },
     ],
   },
