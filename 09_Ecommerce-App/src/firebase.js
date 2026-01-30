@@ -1,5 +1,6 @@
 import { getAnalytics, isSupported } from "firebase/analytics";
 import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -16,6 +17,9 @@ export const app = initializeApp(firebaseConfig);
 
 // Use FireStore
 export const db = getFirestore(app);
+
+// Use Auth
+export const auth = getAuth(app);
 
 // Analytics only works in browser
 export let analytics;
