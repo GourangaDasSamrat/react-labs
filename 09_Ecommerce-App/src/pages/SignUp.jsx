@@ -1,7 +1,8 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
 
 const SignUp = () => {
   const [user, setUser] = useState({
@@ -25,12 +26,17 @@ const SignUp = () => {
 
     try {
       await createUserWithEmailAndPassword(auth, user.email, user.password);
+      await setDoc(doc(db, "users", auth.currentUser.uid), {
+        email: user.email,
+        role: "user",
+      });
+
       setIsLoading(false);
       setErrorMessage("");
       navigate("/sign-in");
     } catch (error) {
-      setIsLoading(false)
-      setErrorMessage(error.message)
+      setIsLoading(false);
+      setErrorMessage(error.message);
       console.error(error, "Sign up");
     }
   };
