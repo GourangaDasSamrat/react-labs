@@ -1,10 +1,14 @@
+import { signOut } from "firebase/auth";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/logo.svg";
+import { useAuth } from "../contexts";
+import { auth } from "../firebase";
 
 const Navbar = () => {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { isLoggedIn, role } = useAuth();
 
   const isActive = (path) => location.pathname === path;
 
@@ -30,53 +34,72 @@ const Navbar = () => {
               Home
             </Link>
 
-            <Link
-              to="/cart"
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                isActive("/cart")
-                  ? "bg-blue-600 text-white"
-                  : "hover:bg-gray-100"
-              }`}
-            >
-              <i className="bi bi-cart mr-2"></i>
-              Cart
-            </Link>
+            {isLoggedIn && role === "admin" && (
+              <>
+                <Link
+                  to="/add-product"
+                  className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                    isActive("/add-product")
+                      ? "bg-blue-600 text-white"
+                      : "hover:bg-gray-100"
+                  }`}
+                >
+                  <i className="bi bi-plus-circle mr-2"></i>
+                  Add Product
+                </Link>
+              </>
+            )}
 
-            <Link
-              to="/add-product"
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                isActive("/add-product")
-                  ? "bg-blue-600 text-white"
-                  : "hover:bg-gray-100"
-              }`}
-            >
-              <i className="bi bi-plus-circle mr-2"></i>
-              Add Product
-            </Link>
+            {!isLoggedIn && (
+              <>
+                <Link
+                  to="/sign-in"
+                  className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                    isActive("/sign-in")
+                      ? "bg-blue-600 text-white"
+                      : "hover:bg-gray-100"
+                  }`}
+                >
+                  <i className="bi bi-box-arrow-in-right mr-2"></i>
+                  Sign In
+                </Link>
 
-            <Link
-              to="/sign-in"
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                isActive("/sign-in")
-                  ? "bg-blue-600 text-white"
-                  : "hover:bg-gray-100"
-              }`}
-            >
-              <i className="bi bi-box-arrow-in-right mr-2"></i>
-              Sign In
-            </Link>
+                <Link
+                  to="/sign-up"
+                  className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                    isActive("/sign-up")
+                      ? "bg-blue-600 text-white"
+                      : "hover:bg-gray-100"
+                  }`}
+                >
+                  <i className="bi bi-person-plus mr-2"></i>
+                  Sign Up
+                </Link>
+              </>
+            )}
+            {isLoggedIn && (
+              <>
+                <Link
+                  to="/cart"
+                  className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                    isActive("/cart")
+                      ? "bg-blue-600 text-white"
+                      : "hover:bg-gray-100"
+                  }`}
+                >
+                  <i className="bi bi-cart mr-2"></i>
+                  Cart
+                </Link>
 
-            <Link
-              to="/sign-up"
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                isActive("/sign-up")
-                  ? "bg-blue-600 text-white"
-                  : "hover:bg-gray-100"
-              }`}
-            >
-              <i className="bi bi-person-plus mr-2"></i>
-              Sign Up
-            </Link>
+                <button
+                  onClick={() => signOut(auth)}
+                  className="px-4 py-2 rounded-md text-sm font-medium text-red-600 hover:bg-red-50"
+                >
+                  <i className="bi bi-box-arrow-right mr-2"></i>
+                  Sign Out
+                </button>
+              </>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -106,57 +129,77 @@ const Navbar = () => {
               Home
             </Link>
 
-            <Link
-              to="/cart"
-              onClick={() => setIsMenuOpen(false)}
-              className={`block px-4 py-2 rounded-md text-base font-medium ${
-                isActive("/cart")
-                  ? "bg-blue-600 text-white"
-                  : "hover:bg-gray-100"
-              }`}
-            >
-              <i className="bi bi-cart mr-2"></i>
-              Cart
-            </Link>
+            {isLoggedIn && role === "admin" && (
+              <>
+                <Link
+                  to="/add-product"
+                  onClick={() => setIsMenuOpen(false)}
+                  className={`block px-4 py-2 rounded-md text-base font-medium ${
+                    isActive("/add-product")
+                      ? "bg-blue-600 text-white"
+                      : "hover:bg-gray-100"
+                  }`}
+                >
+                  <i className="bi bi-plus-circle mr-2"></i>
+                  Add Product
+                </Link>
+              </>
+            )}
 
-            <Link
-              to="/add-product"
-              onClick={() => setIsMenuOpen(false)}
-              className={`block px-4 py-2 rounded-md text-base font-medium ${
-                isActive("/add-product")
-                  ? "bg-blue-600 text-white"
-                  : "hover:bg-gray-100"
-              }`}
-            >
-              <i className="bi bi-plus-circle mr-2"></i>
-              Add Product
-            </Link>
+            {!isLoggedIn && (
+              <>
+                <Link
+                  to="/sign-in"
+                  onClick={() => setIsMenuOpen(false)}
+                  className={`block px-4 py-2 rounded-md text-base font-medium ${
+                    isActive("/sign-in")
+                      ? "bg-blue-600 text-white"
+                      : "hover:bg-gray-100"
+                  }`}
+                >
+                  <i className="bi bi-box-arrow-in-right mr-2"></i>
+                  Sign In
+                </Link>
 
-            <Link
-              to="/sign-in"
-              onClick={() => setIsMenuOpen(false)}
-              className={`block px-4 py-2 rounded-md text-base font-medium ${
-                isActive("/sign-in")
-                  ? "bg-blue-600 text-white"
-                  : "hover:bg-gray-100"
-              }`}
-            >
-              <i className="bi bi-box-arrow-in-right mr-2"></i>
-              Sign In
-            </Link>
+                <Link
+                  to="/sign-up"
+                  onClick={() => setIsMenuOpen(false)}
+                  className={`block px-4 py-2 rounded-md text-base font-medium ${
+                    isActive("/sign-up")
+                      ? "bg-blue-600 text-white"
+                      : "hover:bg-gray-100"
+                  }`}
+                >
+                  <i className="bi bi-person-plus mr-2"></i>
+                  Sign Up
+                </Link>
+              </>
+            )}
 
-            <Link
-              to="/sign-up"
-              onClick={() => setIsMenuOpen(false)}
-              className={`block px-4 py-2 rounded-md text-base font-medium ${
-                isActive("/sign-up")
-                  ? "bg-blue-600 text-white"
-                  : "hover:bg-gray-100"
-              }`}
-            >
-              <i className="bi bi-person-plus mr-2"></i>
-              Sign Up
-            </Link>
+            {isLoggedIn && (
+              <>
+                <Link
+                  to="/cart"
+                  onClick={() => setIsMenuOpen(false)}
+                  className={`block px-4 py-2 rounded-md text-base font-medium ${
+                    isActive("/cart")
+                      ? "bg-blue-600 text-white"
+                      : "hover:bg-gray-100"
+                  }`}
+                >
+                  <i className="bi bi-cart mr-2"></i>
+                  Cart
+                </Link>
+
+                <button
+                  onClick={() => signOut(auth)}
+                  className="block px-4 py-2 rounded-md text-base font-medium text-red-600 hover:bg-red-50"
+                >
+                  <i className="bi bi-box-arrow-right mr-2"></i>
+                  Sign Out
+                </button>
+              </>
+            )}
           </div>
         </div>
       )}
