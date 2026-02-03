@@ -50,6 +50,22 @@ const Navbar = () => {
               </>
             )}
 
+            {isLoggedIn && role === "admin" && (
+              <>
+                <Link
+                  to="/all-products"
+                  className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                    isActive("/all-products")
+                      ? "bg-blue-600 text-white"
+                      : "hover:bg-gray-100"
+                  }`}
+                >
+                  <i className="bi bi-plus-circle mr-2"></i>
+                  All Products
+                </Link>
+              </>
+            )}
+
             {!isLoggedIn && (
               <>
                 <Link
@@ -142,6 +158,23 @@ const Navbar = () => {
                 >
                   <i className="bi bi-plus-circle mr-2"></i>
                   Add Product
+                </Link>
+              </>
+            )}
+
+            {isLoggedIn && role === "admin" && (
+              <>
+                <Link
+                  to="/all-products"
+                  onClick={() => setIsMenuOpen(false)}
+                  className={`block px-4 py-2 rounded-md text-base font-medium ${
+                    isActive("/all-products")
+                      ? "bg-blue-600 text-white"
+                      : "hover:bg-gray-100"
+                  }`}
+                >
+                  <i className="bi bi-plus-circle mr-2"></i>
+                  All Products
                 </Link>
               </>
             )}

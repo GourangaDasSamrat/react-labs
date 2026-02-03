@@ -1,7 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import { PrivateAdminRoute, PrivateUserRoute } from "../components";
-import { AddProduct, Cart, NotFound, Shop, SignIn, SignUp } from "../pages";
+import {
+  AddProduct,
+  AllProducts,
+  Cart,
+  NotFound,
+  Shop,
+  SignIn,
+  SignUp,
+} from "../pages";
 
 export const rootRouter = createBrowserRouter([
   {
@@ -34,6 +42,14 @@ export const rootRouter = createBrowserRouter([
         element: (
           <PrivateAdminRoute>
             <AddProduct />
+          </PrivateAdminRoute>
+        ),
+      },
+      {
+        path: "all-products",
+        element: (
+          <PrivateAdminRoute>
+            <AllProducts />
           </PrivateAdminRoute>
         ),
       },
