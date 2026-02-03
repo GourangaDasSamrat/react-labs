@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import {
   useAddProductMutation,
   useGetCategoriesQuery,
-} from "../features/api/api";
+} from "../features/api";
 import { uploadToCloudinary } from "../utils/cloudinary";
 
 const AddProduct = () => {

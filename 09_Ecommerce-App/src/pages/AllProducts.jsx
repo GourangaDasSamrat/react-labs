@@ -2,7 +2,7 @@ import { useNavigate } from "react-router";
 import {
   useGetAllProductsQuery,
   useGetCategoriesQuery,
-} from "../features/api/api";
+} from "../features/api";
 
 const AllProducts = () => {
   const navigate = useNavigate();

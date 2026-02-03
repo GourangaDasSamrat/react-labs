@@ -4,7 +4,7 @@ import {
   useGetAllProductsQuery,
   useGetCategoriesQuery,
   useGetProductsByCategoryQuery,
-} from "../features/api/api";
+} from "../features/api";
 
 const Shop = () => {
   const [searchParams, setSearchParams] = useSearchParams();

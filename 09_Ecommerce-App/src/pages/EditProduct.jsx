@@ -4,7 +4,7 @@ import {
   useGetAllProductsQuery,
   useGetCategoriesQuery,
   useUpdateProductMutation,
-} from "../features/api/api";
+} from "../features/api";
 import { uploadToCloudinary } from "../utils/cloudinary";
 
 const EditProduct = () => {
