@@ -1,42 +1,22 @@
-import { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../firebase";
 import { useNavigate } from "react-router";
+import {
+  useGetAllProductsQuery,
+  useGetCategoriesQuery,
+} from "../features/api/api";
 
 const AllProducts = () => {
   const navigate = useNavigate();
 
-  const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const {
+    data: products = [],
+    isLoading: productsLoading,
+    isError: productsError,
+  } = useGetAllProductsQuery();
 
-  useEffect(() => {
-    const fetchProductsAndCategories = async () => {
-      setLoading(true);
-      try {
-        const prodSnap = await getDocs(collection(db, "products"));
-        const prodData = prodSnap.docs.map((d) => ({
-          id: d.id,
-          ...d.data(),
-        }));
-        setProducts(prodData);
+  const { data: categories = [], isLoading: categoriesLoading } =
+    useGetCategoriesQuery();
 
-        const catSnap = await getDocs(collection(db, "categories"));
-        const catData = catSnap.docs.map((d) => ({
-          id: d.id,
-          ...d.data(),
-        }));
-        setCategories(catData);
-      } catch (error) {
-        console.error(error);
-        alert("Failed to fetch products");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProductsAndCategories();
-  }, []);
+  const loading = productsLoading || categoriesLoading;
 
   const getCategoryName = (categoryId) => {
     const cat = categories.find((c) => c.id === categoryId);
@@ -50,12 +30,13 @@ const AllProducts = () => {
       </p>
     );
 
-  if (!products.length)
+  if (productsError)
     return (
-      <p className="text-center text-gray-500 mt-10">
-        No products found
-      </p>
+      <p className="text-center text-red-500 mt-10">Failed to load products</p>
     );
+
+  if (!products.length)
+    return <p className="text-center text-gray-500 mt-10">No products found</p>;
 
   return (
     <div className="p-6 bg-white rounded-xl shadow">
@@ -88,10 +69,7 @@ const AllProducts = () => {
 
           <tbody className="divide-y divide-blue-100">
             {products.map((prod) => (
-              <tr
-                key={prod.id}
-                className="hover:bg-blue-50 transition"
-              >
+              <tr key={prod.id} className="hover:bg-blue-50 transition">
                 <td className="px-4 py-3">
                   <img
                     src={prod.image}
@@ -114,9 +92,7 @@ const AllProducts = () => {
 
                 <td className="px-4 py-3">
                   <button
-                    onClick={() =>
-                      navigate(`/admin/edit-product/${prod.id}`)
-                    }
+                    onClick={() => navigate(`/admin/edit-product/${prod.id}`)}
                     className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition text-sm"
                   >
                     <i className="bi bi-pencil-square"></i>
