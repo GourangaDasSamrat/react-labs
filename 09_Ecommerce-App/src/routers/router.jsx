@@ -5,6 +5,7 @@ import {
   AddProduct,
   AllProducts,
   Cart,
+  EditProduct,
   NotFound,
   Shop,
   SignIn,
@@ -50,6 +51,14 @@ export const rootRouter = createBrowserRouter([
         element: (
           <PrivateAdminRoute>
             <AllProducts />
+          </PrivateAdminRoute>
+        ),
+      },
+      {
+        path: "admin/edit-product/:id",
+        element: (
+          <PrivateAdminRoute>
+            <EditProduct />
           </PrivateAdminRoute>
         ),
       },
