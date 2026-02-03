@@ -37,9 +37,9 @@ const Navbar = () => {
             {isLoggedIn && role === "admin" && (
               <>
                 <Link
-                  to="/add-product"
+                  to="/admin/add-product"
                   className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                    isActive("/add-product")
+                    isActive("/admin/add-product")
                       ? "bg-blue-600 text-white"
                       : "hover:bg-gray-100"
                   }`}
@@ -53,9 +53,9 @@ const Navbar = () => {
             {isLoggedIn && role === "admin" && (
               <>
                 <Link
-                  to="/all-products"
+                  to="/admin/all-products"
                   className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                    isActive("/all-products")
+                    isActive("/admin/all-products")
                       ? "bg-blue-600 text-white"
                       : "hover:bg-gray-100"
                   }`}
@@ -148,10 +148,10 @@ const Navbar = () => {
             {isLoggedIn && role === "admin" && (
               <>
                 <Link
-                  to="/add-product"
+                  to="/admin/add-product"
                   onClick={() => setIsMenuOpen(false)}
                   className={`block px-4 py-2 rounded-md text-base font-medium ${
-                    isActive("/add-product")
+                    isActive("/admin/add-product")
                       ? "bg-blue-600 text-white"
                       : "hover:bg-gray-100"
                   }`}
@@ -165,10 +165,10 @@ const Navbar = () => {
             {isLoggedIn && role === "admin" && (
               <>
                 <Link
-                  to="/all-products"
+                  to="/admin/all-products"
                   onClick={() => setIsMenuOpen(false)}
                   className={`block px-4 py-2 rounded-md text-base font-medium ${
-                    isActive("/all-products")
+                    isActive("/admin/all-products")
                       ? "bg-blue-600 text-white"
                       : "hover:bg-gray-100"
                   }`}

@@ -38,7 +38,7 @@ export const rootRouter = createBrowserRouter([
         element: <SignUp />,
       },
       {
-        path: "add-product",
+        path: "admin/add-product",
         element: (
           <PrivateAdminRoute>
             <AddProduct />
@@ -46,7 +46,7 @@ export const rootRouter = createBrowserRouter([
         ),
       },
       {
-        path: "all-products",
+        path: "admin/all-products",
         element: (
           <PrivateAdminRoute>
             <AllProducts />
