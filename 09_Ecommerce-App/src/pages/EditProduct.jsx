@@ -100,9 +100,7 @@ const EditProduct = () => {
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Title */}
         <div>
-          <label className="block text-blue-800 font-medium mb-1">
-            Title
-          </label>
+          <label className="block text-blue-800 font-medium mb-1">Title</label>
           <input
             type="text"
             value={title}
@@ -120,7 +118,7 @@ const EditProduct = () => {
             type="number"
             min="0"
             value={price}
-            onChange={(e) => setPrice(e.target.value)}
+            onChange={(e) => setPrice(Number(e.target.value))}
             required
             disabled={submitting}
             className="w-full border border-blue-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
