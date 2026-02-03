@@ -1,4 +1,67 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  useAddProductMutation,
+  useGetCategoriesQuery,
+} from "../features/api/api";
+
 const AddProduct = () => {
+  const [product, setProduct] = useState({
+    title: "",
+    price: "",
+    image: "",
+    categoryId: "",
+  });
+  const { data: categories = [] } = useGetCategoriesQuery();
+  const [addProduct] = useAddProductMutation();
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setProduct({
+      ...product,
+      [e.target.name]:
+        e.target.name === "price" ? Number(e.target.value) : e.target.value,
+    });
+  };
+
+  const handleImageChange = async (e) => {
+    const file = e.target.files[0];
+    const data = new FormData();
+
+    const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
+    const presetName = import.meta.env.VITE_CLOUDINARY_PRESET_NAME;
+
+    data.append("file", file);
+    data.append("cloud_name", cloudName);
+    data.append("upload_preset", presetName);
+
+    const res = await fetch(
+      `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+      {
+        method: "POST",
+        body: data,
+      },
+    );
+    const result = await res.json();
+
+    setProduct({
+      ...product,
+      image: result.secure_url,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!product.image) {
+      alert("Image upload failed");
+      return;
+    }
+
+    await addProduct(product);
+    navigate("/");
+  };
+
   return (
     <div className="flex justify-center mt-10">
       <form
@@ -40,36 +103,63 @@ const AddProduct = () => {
           />
         </div>
 
-        {/* Description */}
+        {/* Category */}
         <div className="mb-4">
-          <label className="block text-gray-700 mb-1" htmlFor="description">
-            <i className="bi bi-card-text mr-2"></i> Description
+          <label className="block text-gray-700 mb-1" htmlFor="categoryId">
+            <i className="bi bi-tags mr-2"></i> Category
           </label>
-          <input
-            id="description"
-            value={product.description}
+
+          <select
+            id="categoryId"
+            name="categoryId"
+            value={product.categoryId}
             onChange={handleChange}
-            name="description"
-            type="text"
             required
-            className="w-full border border-blue-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-          />
+            className="w-full border border-blue-300 rounded-md px-3 py-2 bg-white text-gray-700
+               focus:outline-none focus:ring-2 focus:ring-blue-400
+               hover:border-blue-400 transition"
+          >
+            <option value="" disabled>
+              -- Select a category --
+            </option>
+
+            {categories.map((cat) => (
+              <option key={cat.id} value={cat.id}>
+                {cat.name}
+              </option>
+            ))}
+          </select>
         </div>
 
-        {/* Image URL */}
-        <div className="mb-4">
-          <label className="block text-gray-700 mb-1" htmlFor="image">
-            <i className="bi bi-image mr-2"></i> Image URL
+        {/* Image Upload */}
+        <div className="mb-6">
+          <label className="block text-gray-700 mb-2">
+            <i className="bi bi-image mr-2"></i> Product Image
           </label>
-          <input
-            id="image"
-            onChange={handleChange}
-            value={product.image}
-            name="image"
-            type="text"
-            required
-            className="w-full border border-blue-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-          />
+
+          <div className="flex flex-col items-center justify-center border-2 border-dashed border-blue-300 rounded-lg p-4 hover:border-blue-500 transition">
+            <input
+              type="file"
+              accept=".webp,.png,.jpg,.jpeg"
+              onChange={handleImageChange}
+              className="w-full cursor-pointer rounded-md border border-blue-300 bg-white px-3 py-2 text-sm text-gray-600 file:mr-4 file:rounded-md file:border-0 file:bg-blue-600 file:px-4 file:py-2 file:text-white file:cursor-pointer hover:file:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+
+            <label
+              htmlFor="imageUpload"
+              className="cursor-pointer text-blue-600 font-medium"
+            >
+              Click to upload image
+            </label>
+
+            {product.image && (
+              <img
+                src={product.image}
+                alt="Preview"
+                className="mt-4 w-40 h-40 object-cover rounded-md shadow"
+              />
+            )}
+          </div>
         </div>
 
         {/* Submit */}

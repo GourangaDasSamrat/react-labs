@@ -27,6 +27,7 @@ export const apiSlice = createApi({
           return { error: error };
         }
       },
+      invalidatesTags: ["products"],
     }),
 
     updateProduct: builder.mutation({
