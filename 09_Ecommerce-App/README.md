@@ -8,11 +8,12 @@ Click [here](https://rlab-9.gdsamrat.qzz.io/) to see hosted version of this lab.
 - React 19
 - Redux
 - Redux Toolkit
-- Tailwind CSS
-- Bootstrap Icons
-- Firebase
 - React Router Dom
+- Tailwind CSS v4
+- Bootstrap Icons
 - Vercel (for hosting)
+- Firebase (for bass)
+- Cloudinary (for image upload)
 
 ## Installation
 
@@ -56,24 +57,18 @@ pnpm install
 4. Click on the web icon (`</>`) to create a web app or select existing one
 5. Copy the Firebase configuration values
 
-#### Step 3: Setup Environment Variables
-1. Copy the `.env.example` file to `.env`:
-   ```bash
-   cp .env.example .env
-   ```
+## Cloudinary Configuration
 
-2. Open `.env` and replace the placeholder values with your actual Firebase configuration:
-   ```env
-   VITE_FIREBASE_API_KEY=your_api_key_here
-   VITE_FIREBASE_AUTH_DOMAIN=your_project_id.firebaseapp.com
-   VITE_FIREBASE_PROJECT_ID=your_project_id_here
-   VITE_FIREBASE_STORAGE_BUCKET=your_project_id.appspot.com
-   VITE_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id_here
-   VITE_FIREBASE_APP_ID=your_app_id_here
-   VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id_here
-   ```
+Cloudinary is used for image uploads (product images, banners, etc.).
 
-3. **Important**: Never commit your `.env` file to version control. It's already added to `.gitignore`.
+### Step 1: Create a Cloudinary Account
+
+1. Go to [Cloudinary](https://cloudinary.com/)
+2. Sign up or log in
+3. From the **Dashboard**, note down:
+
+   * **Cloud Name**
+   * **Preset Name**
 
 ### Development Server
 ```bash
@@ -100,5 +95,5 @@ npm run preview
 3. Import your repository
 4. Add environment variables in Vercel dashboard:
    - Go to Project Settings → Environment Variables
-   - Add all `VITE_FIREBASE_*` variables with your Firebase values
+   - Add all `VITE_FIREBASE_*` and `VITE_CLOUDINARY_*` variables with your Firebase values
 5. Deploy!
