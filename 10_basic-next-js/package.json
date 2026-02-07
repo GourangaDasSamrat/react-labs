@@ -1,21 +1,25 @@
 {
-  "name": "10_basic-next-js",
+  "name": "ic-mern5-class-9",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "db": "json-server --watch ./server/db.json --port 8000",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {
+    "json-server": "^1.0.0-beta.5",
     "next": "16.1.6",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "react-markdown": "^10.1.0"
   },
   "devDependencies": {
-    "babel-plugin-react-compiler": "1.0.0",
+    "@tailwindcss/postcss": "^4",
     "eslint": "^9",
-    "eslint-config-next": "16.1.6"
+    "eslint-config-next": "16.1.6",
+    "tailwindcss": "^4"
   }
 }
